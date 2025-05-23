@@ -1,0 +1,244 @@
+/* ContactPage.css */
+
+.contact-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+.contact-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.contact-header h1 {
+  font-size: 2.5rem;
+  color: #2c3e50;
+  margin-bottom: 1rem;
+}
+
+.contact-header p {
+  font-size: 1.2rem;
+  color: #7f8c8d;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.contact-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+}
+
+/* Contact Form Styles */
+.contact-form-section {
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  padding: 2rem;
+}
+
+.contact-form-section h2 {
+  color: #2c3e50;
+  margin-bottom: 1.5rem;
+  font-size: 1.8rem;
+}
+
+.contact-form .form-group {
+  margin-bottom: 1.5rem;
+}
+
+.contact-form label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  color: #34495e;
+}
+
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  padding: 0.8rem;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 1rem;
+  transition: border-color 0.3s;
+  background-color: #f8f9fa;
+  color: #495057;
+}
+
+.contact-form input::placeholder,
+.contact-form textarea::placeholder {
+  color: #adb5bd;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+  border-color: #3498db;
+  outline: none;
+  background-color: #fff;
+}
+
+.contact-form .submit-btn {
+  background-color: #3498db;
+  color: white;
+  border: none;
+  padding: 0.8rem 1.5rem;
+  font-size: 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.contact-form .submit-btn:hover {
+  background-color: #2980b9;
+}
+
+/* Emergency Contacts Styles */
+.emergency-contacts-section {
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  padding: 2rem;
+}
+
+.emergency-contacts-section h2 {
+  color: #2c3e50;
+  margin-bottom: 1.5rem;
+  font-size: 1.8rem;
+  text-align: center;
+}
+
+.emergency-contacts-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 1.5rem;
+}
+
+.emergency-contact-card {
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  padding: 1.5rem;
+  transition: transform 0.3s, box-shadow 0.3s;
+  height: 100%;
+}
+
+.emergency-contact-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.contact-content-centered {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  height: 100%;
+}
+
+.contact-icon {
+  background-color: #e74c3c;
+  color: white;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.contact-icon i {
+  font-size: 1.5rem;
+}
+
+.contact-details {
+  width: 100%;
+}
+
+.contact-details h3 {
+  margin: 0 0 0.5rem 0;
+  font-size: 1.2rem;
+  color: #2c3e50;
+}
+
+.contact-number {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #e74c3c;
+  margin: 0.5rem 0;
+}
+
+.contact-description {
+  font-size: 0.9rem;
+  color: #7f8c8d;
+  margin: 0;
+}
+
+/* Service-specific icon colors */
+.emergency-contact-card:nth-child(1) .contact-icon {
+  background-color: #3498db; /* Police - Blue */
+}
+
+.emergency-contact-card:nth-child(2) .contact-icon {
+  background-color: #e74c3c; /* Ambulance - Red */
+}
+
+.emergency-contact-card:nth-child(3) .contact-icon {
+  background-color: #9b59b6; /* Women Helpline - Purple */
+}
+
+.emergency-contact-card:nth-child(4) .contact-icon {
+  background-color: #2ecc71; /* Child Helpline - Green */
+}
+
+.emergency-contact-card:nth-child(5) .contact-icon {
+  background-color: #f39c12; /* Citizens Call Centre - Orange */
+}
+
+.emergency-contact-card:nth-child(6) .contact-icon {
+  background-color: #34495e; /* Crime Stopper - Dark Blue */
+}
+
+.emergency-contact-card:nth-child(7) .contact-icon {
+  background-color: #d35400; /* Rescue and Relief - Dark Orange */
+}
+
+.emergency-contact-card:nth-child(8) .contact-icon {
+  background-color: #16a085; /* Railway Helpline - Teal */
+}
+
+.emergency-contact-card:nth-child(9) .contact-icon {
+  background-color: #7f8c8d; /* NIC Service Desk - Gray */
+}
+
+/* Responsive adjustments */
+@media (max-width: 992px) {
+  .contact-content {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  
+  .emergency-contacts-container {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  }
+}
+
+@media (max-width: 576px) {
+  .emergency-contacts-container {
+    grid-template-columns: 1fr;
+  }
+  
+  .contact-header h1 {
+    font-size: 2rem;
+  }
+  
+  .contact-header p {
+    font-size: 1rem;
+  }
+  
+  .contact-form-section,
+  .emergency-contacts-section {
+    padding: 1.5rem;
+  }
+} 

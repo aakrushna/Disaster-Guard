@@ -1,0 +1,170 @@
+/* Global Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.5;
+  color: #333;
+  overflow-x: hidden;
+  width: 100%;
+}
+
+/* Global link styles */
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Navbar specific link overrides */
+.nav-link {
+  color: #ffffff !important;
+}
+
+.nav-link:hover,
+.nav-link.active {
+  color: #f8673a !important;
+}
+
+.App {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.container {
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin-bottom: 1rem;
+  line-height: 1.2;
+}
+
+p {
+  margin-bottom: 1rem;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+.alert {
+  padding: 15px;
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
+
+.alert-info {
+  background-color: #d1ecf1;
+  color: #0c5460;
+  border: 1px solid #bee5eb;
+}
+
+.mt-5 {
+  margin-top: 3rem;
+}
+
+#root {
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto;
+  text-align: center;
+  overflow-x: hidden;
+}
+
+/* Responsive Typography */
+@media screen and (max-width: 768px) {
+  html {
+    font-size: 15px;
+  }
+  
+  .container {
+    padding: 0 15px;
+  }
+  
+  .mt-5 {
+    margin-top: 2.5rem;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  html {
+    font-size: 14px;
+  }
+  
+  .container {
+    padding: 0 10px;
+  }
+  
+  h1 {
+    font-size: 1.8rem;
+  }
+  
+  h2 {
+    font-size: 1.5rem;
+  }
+  
+  h3 {
+    font-size: 1.3rem;
+  }
+  
+  .mt-5 {
+    margin-top: 2rem;
+  }
+  
+  .alert {
+    padding: 12px;
+    margin-bottom: 15px;
+  }
+}
+
+/* Legacy styles from Vite template - can be removed if not needed */
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+.card {
+  padding: 2em;
+}
+
+.read-the-docs {
+  color: #888;
+}

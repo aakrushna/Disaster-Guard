@@ -1,0 +1,7619 @@
+This file is a merged representation of the entire codebase, combined into a single document by Repomix.
+
+<file_summary>
+This section contains a summary of this file.
+
+<purpose>
+This file contains a packed representation of the entire repository's contents.
+It is designed to be easily consumable by AI systems for analysis, code review,
+or other automated processes.
+</purpose>
+
+<file_format>
+The content is organized as follows:
+1. This summary section
+2. Repository information
+3. Directory structure
+4. Repository files, each consisting of:
+  - File path as an attribute
+  - Full contents of the file
+</file_format>
+
+<usage_guidelines>
+- This file should be treated as read-only. Any changes should be made to the
+  original repository files, not this packed version.
+- When processing this file, use the file path to distinguish
+  between different files in the repository.
+- Be aware that this file may contain sensitive information. Handle it with
+  the same level of security as you would the original repository.
+</usage_guidelines>
+
+<notes>
+- Some files may have been excluded based on .gitignore rules and Repomix's configuration
+- Binary files are not included in this packed representation. Please refer to the Repository Structure section for a complete list of file paths, including binary files
+- Files matching patterns in .gitignore are excluded
+- Files matching default ignore patterns are excluded
+- Files are sorted by Git change count (files with more changes are at the bottom)
+</notes>
+
+<additional_info>
+
+</additional_info>
+
+</file_summary>
+
+<directory_structure>
+client/.gitignore
+client/eslint.config.js
+client/index.html
+client/package.json
+client/public/vite.svg
+client/README.md
+client/src/App.css
+client/src/App.jsx
+client/src/assets/react.svg
+client/src/components/Footer.jsx
+client/src/components/Navbar.jsx
+client/src/components/PrivateRoute.jsx
+client/src/context/AuthContext.jsx
+client/src/index.css
+client/src/main.jsx
+client/src/pages/AuthCallback.jsx
+client/src/pages/ContactPage.jsx
+client/src/pages/DisastersPage.jsx
+client/src/pages/HomePage.jsx
+client/src/pages/LoginPage.jsx
+client/src/pages/MapsPage.jsx
+client/src/pages/PreparednessPage.jsx
+client/src/pages/ResourcesPage.jsx
+client/src/pages/SignupPage.jsx
+client/src/services/api.js
+client/src/styles/AuthPages.css
+client/src/styles/ContactPage.css
+client/src/styles/DisastersPage.css
+client/src/styles/Footer.css
+client/src/styles/HomePage.css
+client/src/styles/MapsPage.css
+client/src/styles/Navbar.css
+client/src/styles/PreparednessPage.css
+client/vite.config.js
+README.md
+server/.env.example
+server/.gitignore
+server/config/passport.js
+server/controllers/authController.js
+server/controllers/disasterController.js
+server/index.js
+server/middleware/auth.js
+server/middleware/error.js
+server/models/Disaster.js
+server/models/User.js
+server/package.json
+server/README.md
+server/routes/auth.js
+server/routes/authRoutes.js
+server/routes/disasterRoutes.js
+server/seeder.js
+server/testConnection.js
+</directory_structure>
+
+<files>
+This section contains the contents of the repository's files.
+
+<file path="client/.gitignore">
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+node_modules
+dist
+dist-ssr
+*.local
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+</file>
+
+<file path="client/eslint.config.js">
+import js from '@eslint/js'
+import globals from 'globals'
+import reactHooks from 'eslint-plugin-react-hooks'
+import reactRefresh from 'eslint-plugin-react-refresh'
+
+export default [
+  { ignores: ['dist'] },
+  {
+    files: ['**/*.{js,jsx}'],
+    languageOptions: {
+      ecmaVersion: 2020,
+      globals: globals.browser,
+      parserOptions: {
+        ecmaVersion: 'latest',
+        ecmaFeatures: { jsx: true },
+        sourceType: 'module',
+      },
+    },
+    plugins: {
+      'react-hooks': reactHooks,
+      'react-refresh': reactRefresh,
+    },
+    rules: {
+      ...js.configs.recommended.rules,
+      ...reactHooks.configs.recommended.rules,
+      'no-unused-vars': ['error', { varsIgnorePattern: '^[A-Z_]' }],
+      'react-refresh/only-export-components': [
+        'warn',
+        { allowConstantExport: true },
+      ],
+    },
+  },
+]
+</file>
+
+<file path="client/index.html">
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DisasterGuard - Disaster Management & Response</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
+</file>
+
+<file path="client/package.json">
+{
+  "name": "client",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "lint": "eslint .",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "axios": "^1.8.3",
+    "bootstrap": "^5.3.3",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "react-router-dom": "^7.3.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.21.0",
+    "@types/react": "^19.0.10",
+    "@types/react-dom": "^19.0.4",
+    "@vitejs/plugin-react": "^4.3.4",
+    "eslint": "^9.21.0",
+    "eslint-plugin-react-hooks": "^5.1.0",
+    "eslint-plugin-react-refresh": "^0.4.19",
+    "globals": "^15.15.0",
+    "vite": "^6.2.0"
+  }
+}
+</file>
+
+<file path="client/public/vite.svg">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" class="iconify iconify--logos" width="31.88" height="32" preserveAspectRatio="xMidYMid meet" viewBox="0 0 256 257"><defs><linearGradient id="IconifyId1813088fe1fbc01fb466" x1="-.828%" x2="57.636%" y1="7.652%" y2="78.411%"><stop offset="0%" stop-color="#41D1FF"></stop><stop offset="100%" stop-color="#BD34FE"></stop></linearGradient><linearGradient id="IconifyId1813088fe1fbc01fb467" x1="43.376%" x2="50.316%" y1="2.242%" y2="89.03%"><stop offset="0%" stop-color="#FFEA83"></stop><stop offset="8.333%" stop-color="#FFDD35"></stop><stop offset="100%" stop-color="#FFA800"></stop></linearGradient></defs><path fill="url(#IconifyId1813088fe1fbc01fb466)" d="M255.153 37.938L134.897 252.976c-2.483 4.44-8.862 4.466-11.382.048L.875 37.958c-2.746-4.814 1.371-10.646 6.827-9.67l120.385 21.517a6.537 6.537 0 0 0 2.322-.004l117.867-21.483c5.438-.991 9.574 4.796 6.877 9.62Z"></path><path fill="url(#IconifyId1813088fe1fbc01fb467)" d="M185.432.063L96.44 17.501a3.268 3.268 0 0 0-2.634 3.014l-5.474 92.456a3.268 3.268 0 0 0 3.997 3.378l24.777-5.718c2.318-.535 4.413 1.507 3.936 3.838l-7.361 36.047c-.495 2.426 1.782 4.5 4.151 3.78l15.304-4.649c2.372-.72 4.652 1.36 4.15 3.788l-11.698 56.621c-.732 3.542 3.979 5.473 5.943 2.437l1.313-2.028l72.516-144.72c1.215-2.423-.88-5.186-3.54-4.672l-25.505 4.922c-2.396.462-4.435-1.77-3.759-4.114l16.646-57.705c.677-2.35-1.37-4.583-3.769-4.113Z"></path></svg>
+</file>
+
+<file path="client/README.md">
+# React + Vite
+
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+
+Currently, two official plugins are available:
+
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+
+## Expanding the ESLint configuration
+
+If you are developing a production application, we recommend using TypeScript and enable type-aware lint rules. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+</file>
+
+<file path="client/src/App.css">
+/* Global Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.5;
+  color: #333;
+  overflow-x: hidden;
+  width: 100%;
+}
+
+/* Global link styles */
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Navbar specific link overrides */
+.nav-link {
+  color: #ffffff !important;
+}
+
+.nav-link:hover,
+.nav-link.active {
+  color: #f8673a !important;
+}
+
+.App {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.container {
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin-bottom: 1rem;
+  line-height: 1.2;
+}
+
+p {
+  margin-bottom: 1rem;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+.alert {
+  padding: 15px;
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
+
+.alert-info {
+  background-color: #d1ecf1;
+  color: #0c5460;
+  border: 1px solid #bee5eb;
+}
+
+.mt-5 {
+  margin-top: 3rem;
+}
+
+#root {
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto;
+  text-align: center;
+  overflow-x: hidden;
+}
+
+/* Responsive Typography */
+@media screen and (max-width: 768px) {
+  html {
+    font-size: 15px;
+  }
+  
+  .container {
+    padding: 0 15px;
+  }
+  
+  .mt-5 {
+    margin-top: 2.5rem;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  html {
+    font-size: 14px;
+  }
+  
+  .container {
+    padding: 0 10px;
+  }
+  
+  h1 {
+    font-size: 1.8rem;
+  }
+  
+  h2 {
+    font-size: 1.5rem;
+  }
+  
+  h3 {
+    font-size: 1.3rem;
+  }
+  
+  .mt-5 {
+    margin-top: 2rem;
+  }
+  
+  .alert {
+    padding: 12px;
+    margin-bottom: 15px;
+  }
+}
+
+/* Legacy styles from Vite template - can be removed if not needed */
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+.card {
+  padding: 2em;
+}
+
+.read-the-docs {
+  color: #888;
+}
+</file>
+
+<file path="client/src/App.jsx">
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Navbar from './components/Navbar';
+import Footer from './components/Footer';
+import HomePage from './pages/HomePage';
+import DisastersPage from './pages/DisastersPage';
+import PreparednessPage from './pages/PreparednessPage';
+import MapsPage from './pages/MapsPage';
+import ContactPage from './pages/ContactPage';
+import LoginPage from './pages/LoginPage';
+import SignupPage from './pages/SignupPage';
+import AuthCallback from './pages/AuthCallback';
+import { AuthProvider } from './context/AuthContext.jsx';
+import './App.css';
+
+function App() {
+  return (
+    <AuthProvider>
+      <Router>
+        <div className="App">
+          <Navbar />
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/disasters" element={<DisastersPage />} />
+            <Route path="/preparedness" element={<PreparednessPage />} />
+            <Route path="/maps" element={<MapsPage />} />
+            <Route path="/contact" element={<ContactPage />} />
+            <Route path="/login" element={<LoginPage />} />
+            <Route path="/signup" element={<SignupPage />} />
+            <Route path="/auth/callback" element={<AuthCallback />} />
+          </Routes>
+          <Footer />
+        </div>
+      </Router>
+    </AuthProvider>
+  );
+}
+
+export default App;
+</file>
+
+<file path="client/src/assets/react.svg">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" class="iconify iconify--logos" width="35.93" height="32" preserveAspectRatio="xMidYMid meet" viewBox="0 0 256 228"><path fill="#00D8FF" d="M210.483 73.824a171.49 171.49 0 0 0-8.24-2.597c.465-1.9.893-3.777 1.273-5.621c6.238-30.281 2.16-54.676-11.769-62.708c-13.355-7.7-35.196.329-57.254 19.526a171.23 171.23 0 0 0-6.375 5.848a155.866 155.866 0 0 0-4.241-3.917C100.759 3.829 77.587-4.822 63.673 3.233C50.33 10.957 46.379 33.89 51.995 62.588a170.974 170.974 0 0 0 1.892 8.48c-3.28.932-6.445 1.924-9.474 2.98C17.309 83.498 0 98.307 0 113.668c0 15.865 18.582 31.778 46.812 41.427a145.52 145.52 0 0 0 6.921 2.165a167.467 167.467 0 0 0-2.01 9.138c-5.354 28.2-1.173 50.591 12.134 58.266c13.744 7.926 36.812-.22 59.273-19.855a145.567 145.567 0 0 0 5.342-4.923a168.064 168.064 0 0 0 6.92 6.314c21.758 18.722 43.246 26.282 56.54 18.586c13.731-7.949 18.194-32.003 12.4-61.268a145.016 145.016 0 0 0-1.535-6.842c1.62-.48 3.21-.974 4.76-1.488c29.348-9.723 48.443-25.443 48.443-41.52c0-15.417-17.868-30.326-45.517-39.844Zm-6.365 70.984c-1.4.463-2.836.91-4.3 1.345c-3.24-10.257-7.612-21.163-12.963-32.432c5.106-11 9.31-21.767 12.459-31.957c2.619.758 5.16 1.557 7.61 2.4c23.69 8.156 38.14 20.213 38.14 29.504c0 9.896-15.606 22.743-40.946 31.14Zm-10.514 20.834c2.562 12.94 2.927 24.64 1.23 33.787c-1.524 8.219-4.59 13.698-8.382 15.893c-8.067 4.67-25.32-1.4-43.927-17.412a156.726 156.726 0 0 1-6.437-5.87c7.214-7.889 14.423-17.06 21.459-27.246c12.376-1.098 24.068-2.894 34.671-5.345a134.17 134.17 0 0 1 1.386 6.193ZM87.276 214.515c-7.882 2.783-14.16 2.863-17.955.675c-8.075-4.657-11.432-22.636-6.853-46.752a156.923 156.923 0 0 1 1.869-8.499c10.486 2.32 22.093 3.988 34.498 4.994c7.084 9.967 14.501 19.128 21.976 27.15a134.668 134.668 0 0 1-4.877 4.492c-9.933 8.682-19.886 14.842-28.658 17.94ZM50.35 144.747c-12.483-4.267-22.792-9.812-29.858-15.863c-6.35-5.437-9.555-10.836-9.555-15.216c0-9.322 13.897-21.212 37.076-29.293c2.813-.98 5.757-1.905 8.812-2.773c3.204 10.42 7.406 21.315 12.477 32.332c-5.137 11.18-9.399 22.249-12.634 32.792a134.718 134.718 0 0 1-6.318-1.979Zm12.378-84.26c-4.811-24.587-1.616-43.134 6.425-47.789c8.564-4.958 27.502 2.111 47.463 19.835a144.318 144.318 0 0 1 3.841 3.545c-7.438 7.987-14.787 17.08-21.808 26.988c-12.04 1.116-23.565 2.908-34.161 5.309a160.342 160.342 0 0 1-1.76-7.887Zm110.427 27.268a347.8 347.8 0 0 0-7.785-12.803c8.168 1.033 15.994 2.404 23.343 4.08c-2.206 7.072-4.956 14.465-8.193 22.045a381.151 381.151 0 0 0-7.365-13.322Zm-45.032-43.861c5.044 5.465 10.096 11.566 15.065 18.186a322.04 322.04 0 0 0-30.257-.006c4.974-6.559 10.069-12.652 15.192-18.18ZM82.802 87.83a323.167 323.167 0 0 0-7.227 13.238c-3.184-7.553-5.909-14.98-8.134-22.152c7.304-1.634 15.093-2.97 23.209-3.984a321.524 321.524 0 0 0-7.848 12.897Zm8.081 65.352c-8.385-.936-16.291-2.203-23.593-3.793c2.26-7.3 5.045-14.885 8.298-22.6a321.187 321.187 0 0 0 7.257 13.246c2.594 4.48 5.28 8.868 8.038 13.147Zm37.542 31.03c-5.184-5.592-10.354-11.779-15.403-18.433c4.902.192 9.899.29 14.978.29c5.218 0 10.376-.117 15.453-.343c-4.985 6.774-10.018 12.97-15.028 18.486Zm52.198-57.817c3.422 7.8 6.306 15.345 8.596 22.52c-7.422 1.694-15.436 3.058-23.88 4.071a382.417 382.417 0 0 0 7.859-13.026a347.403 347.403 0 0 0 7.425-13.565Zm-16.898 8.101a358.557 358.557 0 0 1-12.281 19.815a329.4 329.4 0 0 1-23.444.823c-7.967 0-15.716-.248-23.178-.732a310.202 310.202 0 0 1-12.513-19.846h.001a307.41 307.41 0 0 1-10.923-20.627a310.278 310.278 0 0 1 10.89-20.637l-.001.001a307.318 307.318 0 0 1 12.413-19.761c7.613-.576 15.42-.876 23.31-.876H128c7.926 0 15.743.303 23.354.883a329.357 329.357 0 0 1 12.335 19.695a358.489 358.489 0 0 1 11.036 20.54a329.472 329.472 0 0 1-11 20.722Zm22.56-122.124c8.572 4.944 11.906 24.881 6.52 51.026c-.344 1.668-.73 3.367-1.15 5.09c-10.622-2.452-22.155-4.275-34.23-5.408c-7.034-10.017-14.323-19.124-21.64-27.008a160.789 160.789 0 0 1 5.888-5.4c18.9-16.447 36.564-22.941 44.612-18.3ZM128 90.808c12.625 0 22.86 10.235 22.86 22.86s-10.235 22.86-22.86 22.86s-22.86-10.235-22.86-22.86s10.235-22.86 22.86-22.86Z"></path></svg>
+</file>
+
+<file path="client/src/components/Footer.jsx">
+import React from 'react';
+import { Link } from 'react-router-dom';
+import '../styles/Footer.css';
+
+const Footer = () => {
+  return (
+    <footer className="footer">
+      <div className="footer-container">
+        <div className="footer-section">
+          <h3>DisasterGuard</h3>
+          <p>Preparing communities for disasters, providing relief during crises, and supporting recovery efforts.</p>
+          <div className="social-icons">
+            <a href="#" className="social-icon">
+              <i className="fab fa-facebook-f"></i>
+            </a>
+            <a href="#" className="social-icon">
+              <i className="fab fa-twitter"></i>
+            </a>
+            <a href="#" className="social-icon">
+              <i className="fab fa-instagram"></i>
+            </a>
+            <a href="#" className="social-icon">
+              <i className="fab fa-linkedin-in"></i>
+            </a>
+          </div>
+        </div>
+        
+        <div className="footer-section">
+          <h3>Quick Links</h3>
+          <ul className="footer-links">
+            <li>
+              <Link to="/">Home</Link>
+            </li>
+            <li>
+              <Link to="/disasters">Disasters</Link>
+            </li>
+            <li>
+              <Link to="/preparedness">Preparedness</Link>
+            </li>
+            <li>
+              <Link to="/maps">Maps</Link>
+            </li>
+            <li>
+              <Link to="/contact">Contact</Link>
+            </li>
+          </ul>
+        </div>
+        
+        <div className="footer-section">
+          <h3>Contact Us</h3>
+          <ul className="contact-info">
+            <li>
+              <i className="fas fa-map-marker-alt"></i>
+              <span>123 Emergency St, Safety City, SC 12345</span>
+            </li>
+            <li>
+              <i className="fas fa-phone"></i>
+              <span>+1 (555) 123-4567</span>
+            </li>
+            <li>
+              <i className="fas fa-envelope"></i>
+              <span>info@disasterguard.org</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+      
+      <div className="footer-bottom">
+        <p>&copy; {new Date().getFullYear()} DisasterGuard. All rights reserved.</p>
+      </div>
+    </footer>
+  );
+};
+
+export default Footer;
+</file>
+
+<file path="client/src/components/Navbar.jsx">
+import { useState } from 'react';
+import { Link, useLocation, NavLink } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext.jsx';
+import '../styles/Navbar.css';
+
+const Navbar = () => {
+  const [isOpen, setIsOpen] = useState(false);
+  const location = useLocation();
+  const { currentUser, logout, isLoggedIn } = useAuth();
+
+  // Define styles for links
+  const linkStyle = {
+    color: '#ffffff' // White color
+  };
+
+  const activeLinkStyle = {
+    color: '#f8673a' // Orange color for active link
+  };
+
+  const toggleMenu = () => {
+    setIsOpen(!isOpen);
+  };
+
+  // Function to check if the link is active
+  const isActive = (path) => {
+    return location.pathname === path ? 'active' : '';
+  };
+
+  // Handle logout
+  const handleLogout = () => {
+    logout();
+    setIsOpen(false);
+  };
+
+  // Get user's name from currentUser
+  const getUserName = () => {
+    if (!currentUser) return '';
+    return currentUser.fullName || currentUser.email.split('@')[0];
+  };
+
+  return (
+    <nav className="navbar">
+      <div className="navbar-container">
+        <Link to="/" className="navbar-logo">
+          <i className="fas fa-shield-alt"></i>
+          <span>DisasterGuard</span>
+        </Link>
+
+        <div className="menu-icon" onClick={toggleMenu}>
+          <i className={isOpen ? 'fas fa-times' : 'fas fa-bars'}></i>
+        </div>
+
+        <ul className={isOpen ? 'nav-menu active' : 'nav-menu'}>
+          <li className="nav-item">
+            <Link 
+              to="/" 
+              className={`nav-link ${isActive('/')}`} 
+              onClick={() => setIsOpen(false)}
+              style={location.pathname === '/' ? activeLinkStyle : linkStyle}
+            >
+              Home
+            </Link>
+          </li>
+          <li className="nav-item">
+            <Link 
+              to="/disasters" 
+              className={`nav-link ${isActive('/disasters')}`} 
+              onClick={() => setIsOpen(false)}
+              style={location.pathname === '/disasters' ? activeLinkStyle : linkStyle}
+            >
+              Disasters
+            </Link>
+          </li>
+          <li className="nav-item">
+            <Link 
+              to="/preparedness" 
+              className={`nav-link ${isActive('/preparedness')}`} 
+              onClick={() => setIsOpen(false)}
+              style={location.pathname === '/preparedness' ? activeLinkStyle : linkStyle}
+            >
+              Preparedness
+            </Link>
+          </li>
+          <li className="nav-item">
+            <Link 
+              to="/maps" 
+              className={`nav-link ${isActive('/maps')}`} 
+              onClick={() => setIsOpen(false)}
+              style={location.pathname === '/maps' ? activeLinkStyle : linkStyle}
+            >
+              Maps
+            </Link>
+          </li>
+          <li className="nav-item">
+            <Link 
+              to="/contact" 
+              className={`nav-link ${isActive('/contact')}`} 
+              onClick={() => setIsOpen(false)}
+              style={location.pathname === '/contact' ? activeLinkStyle : linkStyle}
+            >
+              Contact
+            </Link>
+          </li>
+          
+          {/* Mobile auth buttons - only visible in mobile menu */}
+          <div className="mobile-auth-buttons">
+            {isLoggedIn() ? (
+              <>
+                <div className="user-greeting">
+                  <i className="fas fa-user-circle"></i>
+                  <span>Hello, {getUserName()}</span>
+                </div>
+                <button 
+                  className="auth-btn logout-btn"
+                  onClick={handleLogout}
+                >
+                  <i className="fas fa-sign-out-alt"></i> Logout
+                </button>
+              </>
+            ) : (
+              <>
+                <Link 
+                  to="/login" 
+                  className={`auth-btn login-btn ${isActive('/login')}`}
+                  onClick={() => setIsOpen(false)}
+                >
+                  <i className="fas fa-sign-in-alt"></i> Login
+                </Link>
+                <Link 
+                  to="/signup" 
+                  className={`auth-btn signup-btn ${isActive('/signup')}`}
+                  onClick={() => setIsOpen(false)}
+                >
+                  <i className="fas fa-user-plus"></i> Sign Up
+                </Link>
+              </>
+            )}
+          </div>
+        </ul>
+
+        {/* Desktop auth buttons - hidden on mobile */}
+        <div className="nav-auth-buttons">
+          {isLoggedIn() ? (
+            <>
+              <div className="user-greeting">
+                <i className="fas fa-user-circle"></i>
+                <span>Hello, {getUserName()}</span>
+              </div>
+              <button 
+                className="auth-btn logout-btn"
+                onClick={handleLogout}
+              >
+                <i className="fas fa-sign-out-alt"></i> Logout
+              </button>
+            </>
+          ) : (
+            <>
+              <Link 
+                to="/login" 
+                className={`auth-btn login-btn ${isActive('/login')}`}
+                onClick={() => setIsOpen(false)}
+              >
+                <i className="fas fa-sign-in-alt"></i> Login
+              </Link>
+              <Link 
+                to="/signup" 
+                className={`auth-btn signup-btn ${isActive('/signup')}`}
+                onClick={() => setIsOpen(false)}
+              >
+                <i className="fas fa-user-plus"></i> Sign Up
+              </Link>
+            </>
+          )}
+        </div>
+      </div>
+    </nav>
+  );
+};
+
+export default Navbar;
+</file>
+
+<file path="client/src/components/PrivateRoute.jsx">
+import { Navigate, useLocation } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext.jsx';
+
+// Component to protect routes that require authentication
+const PrivateRoute = ({ children }) => {
+  const { isLoggedIn } = useAuth();
+  const location = useLocation();
+
+  // If user is not logged in, redirect to login page with the current location
+  if (!isLoggedIn()) {
+    return <Navigate to="/login" state={{ from: location }} replace />;
+  }
+
+  // If user is logged in, render the protected component
+  return children;
+};
+
+export default PrivateRoute;
+</file>
+
+<file path="client/src/context/AuthContext.jsx">
+import React, { createContext, useState, useContext, useEffect } from 'react';
+import { authAPI } from '../services/api';
+
+// Create the authentication context
+const AuthContext = createContext();
+
+// Custom hook to use the auth context
+export const useAuth = () => {
+  return useContext(AuthContext);
+};
+
+// Provider component that wraps the app and makes auth object available to any child component that calls useAuth()
+export const AuthProvider = ({ children }) => {
+  const [currentUser, setCurrentUser] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  // Check if user is logged in from localStorage on initial load
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    const user = localStorage.getItem('user');
+    
+    if (token && user) {
+      setCurrentUser(JSON.parse(user));
+      
+      // Verify token is still valid by fetching current user
+      authAPI.getCurrentUser()
+        .then(response => {
+          if (response.data.success) {
+            setCurrentUser(response.data.user);
+          } else {
+            // Token is invalid, log out
+            logout();
+          }
+        })
+        .catch(() => {
+          // Error fetching user, token might be expired
+          logout();
+        })
+        .finally(() => {
+          setLoading(false);
+        });
+    } else {
+      setLoading(false);
+    }
+  }, []);
+
+  // Login function
+  const login = async (credentials) => {
+    try {
+      setError(null);
+      const response = await authAPI.login(credentials);
+      
+      if (response.data.success) {
+        const { user, token } = response.data;
+        localStorage.setItem('token', token);
+        localStorage.setItem('user', JSON.stringify(user));
+        setCurrentUser(user);
+        return { success: true };
+      } else {
+        setError(response.data.message || 'Login failed');
+        return { success: false, message: response.data.message };
+      }
+    } catch (err) {
+      const message = err.response?.data?.message || 'Login failed. Please try again.';
+      setError(message);
+      return { success: false, message };
+    }
+  };
+
+  // Register function
+  const register = async (userData) => {
+    try {
+      setError(null);
+      console.log('Attempting to register with data:', userData);
+      
+      const response = await authAPI.register(userData);
+      console.log('Registration response:', response);
+      
+      if (response.data.success) {
+        const { user, token } = response.data;
+        localStorage.setItem('token', token);
+        localStorage.setItem('user', JSON.stringify(user));
+        setCurrentUser(user);
+        return { success: true };
+      } else {
+        const errorMsg = response.data.message || 'Registration failed';
+        console.error('Registration failed:', errorMsg);
+        setError(errorMsg);
+        return { success: false, message: errorMsg };
+      }
+    } catch (err) {
+      console.error('Registration error:', err);
+      let message = 'Registration failed. Please try again.';
+      
+      if (err.response) {
+        console.error('Error response:', err.response.data);
+        message = err.response.data.message || message;
+      }
+      
+      setError(message);
+      return { success: false, message };
+    }
+  };
+
+  // Logout function
+  const logout = () => {
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
+    setCurrentUser(null);
+  };
+
+  // Check if user is logged in
+  const isLoggedIn = () => {
+    return currentUser !== null && localStorage.getItem('token') !== null;
+  };
+
+  // Update profile function
+  const updateProfile = async (userData) => {
+    try {
+      setError(null);
+      const response = await authAPI.updateProfile(userData);
+      
+      if (response.data.success) {
+        const updatedUser = response.data.user;
+        localStorage.setItem('user', JSON.stringify(updatedUser));
+        setCurrentUser(updatedUser);
+        return { success: true };
+      } else {
+        setError(response.data.message || 'Profile update failed');
+        return { success: false, message: response.data.message };
+      }
+    } catch (err) {
+      const message = err.response?.data?.message || 'Profile update failed. Please try again.';
+      setError(message);
+      return { success: false, message };
+    }
+  };
+
+  // Value object that will be passed to any consuming components
+  const value = {
+    currentUser,
+    login,
+    register,
+    logout,
+    isLoggedIn,
+    updateProfile,
+    error
+  };
+
+  return (
+    <AuthContext.Provider value={value}>
+      {!loading && children}
+    </AuthContext.Provider>
+  );
+};
+
+export default AuthContext;
+</file>
+
+<file path="client/src/index.css">
+:root {
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #242424;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  font-weight: 500;
+  color: #646cff;
+  text-decoration: inherit;
+}
+a:hover {
+  color: #535bf2;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  place-items: center;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+}
+
+button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #1a1a1a;
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+button:hover {
+  border-color: #646cff;
+}
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    color: #213547;
+    background-color: #ffffff;
+  }
+  a:hover {
+    color: #747bff;
+  }
+  button {
+    background-color: #f9f9f9;
+  }
+}
+</file>
+
+<file path="client/src/main.jsx">
+import React from 'react'
+import ReactDOM from 'react-dom/client'
+import App from './App.jsx'
+import './index.css'
+import 'bootstrap/dist/css/bootstrap.min.css'
+
+ReactDOM.createRoot(document.getElementById('root')).render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>,
+)
+</file>
+
+<file path="client/src/pages/AuthCallback.jsx">
+import React, { useEffect } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext';
+import '../styles/AuthPages.css';
+
+const AuthCallback = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
+  const { login } = useAuth();
+
+  useEffect(() => {
+    const handleCallback = async () => {
+      const params = new URLSearchParams(location.search);
+      const token = params.get('token');
+
+      if (token) {
+        try {
+          // Store the token
+          localStorage.setItem('token', token);
+          
+          // Get user data
+          const response = await fetch('http://localhost:5000/api/auth/me', {
+            headers: {
+              'Authorization': `Bearer ${token}`
+            }
+          });
+          
+          if (response.ok) {
+            const data = await response.json();
+            if (data.success) {
+              localStorage.setItem('user', JSON.stringify(data.user));
+              // Redirect to the page they were trying to access or home
+              const from = location.state?.from?.pathname || '/';
+              navigate(from, { replace: true });
+            }
+          }
+        } catch (error) {
+          console.error('Auth callback error:', error);
+          navigate('/login', { 
+            state: { error: 'Authentication failed. Please try again.' }
+          });
+        }
+      } else {
+        navigate('/login', { 
+          state: { error: 'No authentication token received.' }
+        });
+      }
+    };
+
+    handleCallback();
+  }, [navigate, location, login]);
+
+  return (
+    <div className="auth-container">
+      <div className="auth-card">
+        <div className="auth-header">
+          <h2>Completing Authentication</h2>
+          <p>Please wait while we complete your login...</p>
+        </div>
+        <div className="auth-loading">
+          <i className="fas fa-spinner fa-spin"></i>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default AuthCallback;
+</file>
+
+<file path="client/src/pages/ContactPage.jsx">
+import React from 'react';
+import '../styles/ContactPage.css';
+
+const ContactPage = () => {
+  const emergencyContacts = [
+    {
+      id: 1,
+      service: "Police Helpline",
+      number: "100",
+      description: "For emergencies requiring law enforcement",
+      icon: "fa-shield-alt"
+    },
+    {
+      id: 2,
+      service: "Ambulance",
+      number: "102, 108",
+      description: "For medical emergencies",
+      icon: "fa-ambulance"
+    },
+    {
+      id: 3,
+      service: "Women Helpline",
+      number: "1091",
+      description: "For women's safety and assistance",
+      icon: "fa-female"
+    },
+    {
+      id: 4,
+      service: "Child Helpline",
+      number: "1098",
+      description: "For child protection and welfare",
+      icon: "fa-child"
+    },
+    {
+      id: 5,
+      service: "Citizens Call Centre",
+      number: "155300",
+      description: "For general citizen assistance",
+      icon: "fa-phone-alt"
+    },
+    {
+      id: 6,
+      service: "Crime Stopper",
+      number: "1090",
+      description: "To report criminal activities anonymously",
+      icon: "fa-user-secret"
+    },
+    {
+      id: 7,
+      service: "Rescue and Relief",
+      number: "1070",
+      description: "For disaster rescue and relief operations",
+      icon: "fa-hands-helping"
+    },
+    {
+      id: 8,
+      service: "Railway Helpline",
+      number: "23004000",
+      description: "For railway-related emergencies and information",
+      icon: "fa-train"
+    },
+    {
+      id: 9,
+      service: "NIC Service Desk",
+      number: "1800-111-555",
+      description: "For National Informatics Centre services",
+      icon: "fa-laptop"
+    }
+  ];
+
+  return (
+    <div className="contact-container">
+      <div className="contact-header">
+        <h1>Contact Us</h1>
+        <p>Get in touch with our disaster management team or find emergency contacts.</p>
+      </div>
+      
+      <div className="contact-content">
+        <div className="contact-form-section">
+          <h2>Send Us a Message</h2>
+          <form className="contact-form">
+            <div className="form-group">
+              <label htmlFor="name">Name</label>
+              <input type="text" id="name" name="name" placeholder="Your name" required />
+            </div>
+            
+            <div className="form-group">
+              <label htmlFor="email">Email</label>
+              <input type="email" id="email" name="email" placeholder="Your email" required />
+            </div>
+            
+            <div className="form-group">
+              <label htmlFor="subject">Subject</label>
+              <input type="text" id="subject" name="subject" placeholder="Subject" required />
+            </div>
+            
+            <div className="form-group">
+              <label htmlFor="message">Message</label>
+              <textarea id="message" name="message" rows="5" placeholder="Your message" required></textarea>
+            </div>
+            
+            <button type="submit" className="submit-btn">Send Message</button>
+          </form>
+        </div>
+        
+        <div className="emergency-contacts-section">
+          <h2>Emergency Contacts</h2>
+          <div className="emergency-contacts-container">
+            {emergencyContacts.map((contact) => (
+              <div key={contact.id} className="emergency-contact-card">
+                <div className="contact-content-centered">
+                  <div className="contact-icon">
+                    <i className={`fas ${contact.icon}`}></i>
+                  </div>
+                  <div className="contact-details">
+                    <h3>{contact.service}</h3>
+                    <p className="contact-number">{contact.number}</p>
+                    <p className="contact-description">{contact.description}</p>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default ContactPage;
+</file>
+
+<file path="client/src/pages/DisastersPage.jsx">
+import React, { useState, useEffect } from 'react';
+import '../styles/DisastersPage.css';
+
+const DisastersPage = () => {
+  const [weatherData, setWeatherData] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [city, setCity] = useState('Mumbai');
+  const [searchCity, setSearchCity] = useState('');
+  
+  // State for disaster report form
+  const [reportForm, setReportForm] = useState({
+    name: '',
+    phone: '',
+    location: '',
+    disasterType: '',
+    description: ''
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitSuccess, setSubmitSuccess] = useState(false);
+
+  const API_KEY = '22d270c0482783a1710964c4f07f5c81';
+
+  useEffect(() => {
+    fetchWeatherData();
+  }, [city]);
+
+  const fetchWeatherData = async () => {
+    setLoading(true);
+    try {
+      console.log(`Fetching weather data for: ${city}`);
+      const response = await fetch(
+        `https://api.openweathermap.org/data/2.5/weather?q=${encodeURIComponent(city)}&appid=${API_KEY}&units=metric`
+      );
+      
+      if (!response.ok) {
+        const errorData = await response.json();
+        console.error('API Error:', errorData);
+        throw new Error(errorData.message || 'City not found or weather data unavailable');
+      }
+      
+      const data = await response.json();
+      console.log('Weather data received:', data);
+      setWeatherData(data);
+      setError(null);
+    } catch (err) {
+      console.error('Error fetching weather data:', err);
+      setError(err.message);
+      setWeatherData(null);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleSearch = (e) => {
+    e.preventDefault();
+    if (searchCity.trim()) {
+      console.log(`Setting city to: ${searchCity.trim()}`);
+      setCity(searchCity.trim());
+      setSearchCity('');
+    }
+  };
+
+  const handleReportChange = (e) => {
+    const { id, value } = e.target;
+    setReportForm(prev => ({
+      ...prev,
+      [id]: value
+    }));
+  };
+
+  const handleReportSubmit = (e) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    
+    // Simulate form submission
+    setTimeout(() => {
+      console.log('Disaster report submitted:', reportForm);
+      setIsSubmitting(false);
+      setSubmitSuccess(true);
+      
+      // Reset form after successful submission
+      setReportForm({
+        name: '',
+        phone: '',
+        location: '',
+        disasterType: '',
+        description: ''
+      });
+      
+      // Reset success message after 5 seconds
+      setTimeout(() => {
+        setSubmitSuccess(false);
+      }, 5000);
+    }, 1500);
+  };
+
+  const getWeatherIcon = (iconCode) => {
+    return `https://openweathermap.org/img/wn/${iconCode}@2x.png`;
+  };
+
+  const getBackgroundClass = (weatherMain) => {
+    if (!weatherMain) return 'default-bg';
+    
+    switch (weatherMain.toLowerCase()) {
+      case 'clear':
+        return 'clear-bg';
+      case 'clouds':
+        return 'clouds-bg';
+      case 'rain':
+      case 'drizzle':
+        return 'rain-bg';
+      case 'thunderstorm':
+        return 'thunderstorm-bg';
+      case 'snow':
+        return 'snow-bg';
+      case 'mist':
+      case 'fog':
+      case 'haze':
+        return 'mist-bg';
+      default:
+        return 'default-bg';
+    }
+  };
+
+  return (
+    <div className="disasters-container">
+      <div className="disasters-header">
+        <h1>Disasters Information</h1>
+        <p>Stay informed about current weather conditions and report disasters in your area to help others stay safe.</p>
+      </div>
+      
+      <div className="disaster-cards-section">
+        <div className="cards-container">
+          <div className={`weather-card ${weatherData ? getBackgroundClass(weatherData.weather[0].main) : 'default-bg'}`}>
+            <div className="weather-search">
+              <form onSubmit={handleSearch}>
+                <input
+                  type="text"
+                  placeholder="Search city..."
+                  value={searchCity}
+                  onChange={(e) => setSearchCity(e.target.value)}
+                />
+                <button type="submit">
+                  <i className="fas fa-search"></i>
+                </button>
+              </form>
+            </div>
+            
+            {loading && (
+              <div className="weather-loading">
+                <div className="spinner"></div>
+                <p>Loading weather data...</p>
+              </div>
+            )}
+            
+            {error && !loading && (
+              <div className="weather-error">
+                <i className="fas fa-exclamation-circle"></i>
+                <p>{error}</p>
+                <p>Please try another city.</p>
+              </div>
+            )}
+            
+            {weatherData && !loading && !error && (
+              <div className="weather-content">
+                <div className="weather-header">
+                  <h3>{weatherData.name}, {weatherData.sys.country}</h3>
+                  <p className="weather-date">{new Date().toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}</p>
+                </div>
+                
+                <div className="weather-info">
+                  <div className="weather-temp">
+                    <h2>{Math.round(weatherData.main.temp)}°C</h2>
+                    <p>Feels like: {Math.round(weatherData.main.feels_like)}°C</p>
+                  </div>
+                  
+                  <div className="weather-condition">
+                    <img 
+                      src={getWeatherIcon(weatherData.weather[0].icon)} 
+                      alt={weatherData.weather[0].description} 
+                    />
+                    <p>{weatherData.weather[0].description}</p>
+                  </div>
+                </div>
+                
+                <div className="weather-details">
+                  <div className="weather-detail-item">
+                    <i className="fas fa-wind"></i>
+                    <div>
+                      <p className="detail-label">Wind</p>
+                      <p className="detail-value">{Math.round(weatherData.wind.speed * 3.6)} km/h</p>
+                    </div>
+                  </div>
+                  
+                  <div className="weather-detail-item">
+                    <i className="fas fa-tint"></i>
+                    <div>
+                      <p className="detail-label">Humidity</p>
+                      <p className="detail-value">{weatherData.main.humidity}%</p>
+                    </div>
+                  </div>
+                  
+                  <div className="weather-detail-item">
+                    <i className="fas fa-compress-arrows-alt"></i>
+                    <div>
+                      <p className="detail-label">Pressure</p>
+                      <p className="detail-value">{weatherData.main.pressure} hPa</p>
+                    </div>
+                  </div>
+                </div>
+                
+                <div className="weather-alert">
+                  {weatherData.weather[0].main === 'Thunderstorm' && (
+                    <p><i className="fas fa-exclamation-triangle"></i> Thunderstorm Alert: Seek shelter and stay away from windows and electrical appliances.</p>
+                  )}
+                  {weatherData.weather[0].main === 'Rain' && weatherData.rain && weatherData.rain['1h'] > 10 && (
+                    <p><i className="fas fa-exclamation-triangle"></i> Heavy Rain Alert: Be aware of potential flooding in low-lying areas.</p>
+                  )}
+                  {weatherData.wind.speed > 20 && (
+                    <p><i className="fas fa-exclamation-triangle"></i> Strong Wind Alert: Secure loose objects outdoors and be cautious when driving.</p>
+                  )}
+                </div>
+              </div>
+            )}
+          </div>
+          
+          <div className="report-card">
+            <div className="report-card-header">
+              <h3>Report a Disaster</h3>
+              <p>Help others by reporting disasters in your area</p>
+            </div>
+            <div className="report-card-body">
+              {submitSuccess ? (
+                <div className="report-success">
+                  <i className="fas fa-check-circle"></i>
+                  <p>Thank you for your report! Your information has been submitted successfully.</p>
+                </div>
+              ) : (
+                <form className="report-form" onSubmit={handleReportSubmit}>
+                  <div className="form-group">
+                    <label htmlFor="name">Full Name</label>
+                    <input 
+                      type="text" 
+                      id="name" 
+                      placeholder="Enter your full name"
+                      value={reportForm.name}
+                      onChange={handleReportChange}
+                      required
+                    />
+                  </div>
+                  
+                  <div className="form-group">
+                    <label htmlFor="phone">Phone Number</label>
+                    <input 
+                      type="tel" 
+                      id="phone" 
+                      placeholder="Enter your phone number"
+                      value={reportForm.phone}
+                      onChange={handleReportChange}
+                      required
+                    />
+                  </div>
+                  
+                  <div className="form-group">
+                    <label htmlFor="location">Location</label>
+                    <input 
+                      type="text" 
+                      id="location" 
+                      placeholder="City, State"
+                      value={reportForm.location}
+                      onChange={handleReportChange}
+                      required
+                    />
+                  </div>
+                  
+                  <div className="form-group">
+                    <label htmlFor="disasterType">Disaster Type</label>
+                    <select 
+                      id="disasterType" 
+                      value={reportForm.disasterType}
+                      onChange={handleReportChange}
+                      required
+                    >
+                      <option value="">Select disaster type</option>
+                      <option value="flood">Flood</option>
+                      <option value="earthquake">Earthquake</option>
+                      <option value="cyclone">Cyclone</option>
+                      <option value="landslide">Landslide</option>
+                      <option value="fire">Fire</option>
+                      <option value="other">Other</option>
+                    </select>
+                  </div>
+                  
+                  <div className="form-group">
+                    <label htmlFor="description">Description</label>
+                    <textarea 
+                      id="description" 
+                      rows="4" 
+                      placeholder="Briefly describe the situation"
+                      value={reportForm.description}
+                      onChange={handleReportChange}
+                      required
+                    ></textarea>
+                  </div>
+                  
+                  <button type="submit" className="submit-btn" disabled={isSubmitting}>
+                    {isSubmitting ? (
+                      <>
+                        <span className="spinner-small"></span>
+                        Submitting...
+                      </>
+                    ) : (
+                      'Submit Report'
+                    )}
+                  </button>
+                </form>
+              )}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default DisastersPage;
+</file>
+
+<file path="client/src/pages/HomePage.jsx">
+import { Link } from 'react-router-dom';
+import '../styles/HomePage.css';
+// Import disaster images
+import floodImg from '../assets/images/Flood.webp';
+import earthquakeImg from '../assets/images/Earthquake.webp';
+import hurricaneImg from '../assets/images/Hurricane.webp';
+import wildfireImg from '../assets/images/Wildfire.webp';
+
+const HomePage = () => {
+  return (
+    <div className="home-container">
+      {/* Hero Section */}
+      <div className="hero-section">
+        <div className="hero-content">
+          <h1>Disaster Management & Response</h1>
+          <p>Preparing communities for disasters, providing relief during crises, and supporting recovery efforts.</p>
+          <div className="hero-buttons">
+            <Link to="/preparedness" className="btn btn-primary">
+              Be Prepared
+            </Link>
+            <Link to="/signup" className="btn btn-secondary">
+              Join Our Community
+            </Link>
+          </div>
+        </div>
+      </div>
+
+      {/* Features Section */}
+      <div className="features-section">
+        <h2>How We Help</h2>
+        <div className="features-container">
+          <div className="feature-card">
+            <div className="feature-icon">
+              <i className="fas fa-book"></i>
+            </div>
+            <h3>Education & Awareness</h3>
+            <p>Learn about different types of disasters and how to prepare for them.</p>
+          </div>
+          <div className="feature-card">
+            <div className="feature-icon">
+              <i className="fas fa-hands-helping"></i>
+            </div>
+            <h3>Emergency Response</h3>
+            <p>Coordinated efforts to provide immediate assistance during disasters.</p>
+          </div>
+          <div className="feature-card">
+            <div className="feature-icon">
+              <i className="fas fa-heartbeat"></i>
+            </div>
+            <h3>Recovery Support</h3>
+            <p>Resources and guidance to help communities rebuild after disasters.</p>
+          </div>
+          <div className="feature-card">
+            <div className="feature-icon">
+              <i className="fas fa-map-marked-alt"></i>
+            </div>
+            <h3>Evacuation Planning</h3>
+            <p>Detailed evacuation routes and safe zones for different disaster scenarios.</p>
+          </div>
+        </div>
+      </div>
+
+      {/* Disaster Types Section */}
+      <div className="disaster-types-section">
+        <h2>Common Disasters</h2>
+        <div className="disaster-types-container">
+          <div className="disaster-type">
+            <img src={floodImg} alt="Flood" />
+            <h3>Floods</h3>
+          </div>
+          <div className="disaster-type">
+            <img src={earthquakeImg} alt="Earthquake" />
+            <h3>Earthquakes</h3>
+          </div>
+          <div className="disaster-type">
+            <img src={hurricaneImg} alt="Hurricane" />
+            <h3>Hurricanes</h3>
+          </div>
+          <div className="disaster-type">
+            <img src={wildfireImg} alt="Wildfire" />
+            <h3>Wildfires</h3>
+          </div>
+        </div>
+      </div>
+
+      {/* Call to Action */}
+      <div className="cta-section">
+        <div className="cta-content">
+          <h2>Be Prepared, Stay Safe</h2>
+          <p>Join our community of prepared citizens and learn how to protect yourself and your loved ones.</p>
+          <div className="cta-buttons">
+            <Link to="/contact" className="btn btn-primary">
+              Get Involved
+            </Link>
+            <Link to="/login" className="btn btn-secondary">
+              Member Login
+            </Link>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default HomePage;
+</file>
+
+<file path="client/src/pages/LoginPage.jsx">
+import React, { useState } from 'react';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext.jsx';
+import '../styles/AuthPages.css';
+
+const LoginPage = () => {
+  const [formData, setFormData] = useState({
+    email: '',
+    password: '',
+    rememberMe: false
+  });
+  
+  const [errors, setErrors] = useState({});
+  const [isLoading, setIsLoading] = useState(false);
+  const [loginError, setLoginError] = useState('');
+  const { login } = useAuth();
+  const navigate = useNavigate();
+  const location = useLocation();
+  
+  // Get the redirect path from location state or default to home page
+  const from = location.state?.from?.pathname || '/';
+  
+  const handleChange = (e) => {
+    const { name, value, type, checked } = e.target;
+    setFormData({
+      ...formData,
+      [name]: type === 'checkbox' ? checked : value
+    });
+    
+    // Clear error when user starts typing
+    if (errors[name]) {
+      setErrors({
+        ...errors,
+        [name]: ''
+      });
+    }
+    
+    // Clear login error when user changes input
+    if (loginError) {
+      setLoginError('');
+    }
+  };
+  
+  const validateForm = () => {
+    const newErrors = {};
+    
+    if (!formData.email) {
+      newErrors.email = 'Email is required';
+    } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
+      newErrors.email = 'Email is invalid';
+    }
+    
+    if (!formData.password) {
+      newErrors.password = 'Password is required';
+    }
+    
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+  
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    
+    if (validateForm()) {
+      setIsLoading(true);
+      setLoginError('');
+      
+      try {
+        const credentials = {
+          email: formData.email,
+          password: formData.password
+        };
+        
+        const result = await login(credentials);
+        
+        if (result.success) {
+          // Redirect to the page they were trying to access or home
+          navigate(from, { replace: true });
+        } else {
+          setLoginError(result.message || 'Invalid credentials. Please try again.');
+        }
+      } catch (error) {
+        setLoginError('An error occurred during login. Please try again.');
+        console.error('Login error:', error);
+      } finally {
+        setIsLoading(false);
+      }
+    }
+  };
+  
+  const handleGoogleLogin = () => {
+    window.location.href = 'http://localhost:5000/api/auth/google';
+  };
+
+  const handleFacebookLogin = () => {
+    window.location.href = 'http://localhost:5000/api/auth/facebook';
+  };
+
+  return (
+    <div className="auth-container">
+      <div className="auth-card">
+        <div className="auth-header">
+          <h2>Welcome Back</h2>
+          <p>Log in to access your disaster management dashboard</p>
+        </div>
+        
+        {location.state?.from && (
+          <div className="auth-message">
+            <p>You need to log in to access that page</p>
+          </div>
+        )}
+        
+        {loginError && (
+          <div className="auth-error">
+            <p>{loginError}</p>
+          </div>
+        )}
+        
+        <form className="auth-form" onSubmit={handleSubmit}>
+          <div className="form-group">
+            <label htmlFor="email">Email Address</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+              placeholder="Enter your email"
+              className={errors.email ? 'error' : ''}
+            />
+            {errors.email && <span className="error-message">{errors.email}</span>}
+          </div>
+          
+          <div className="form-group">
+            <label htmlFor="password">Password</label>
+            <input
+              type="password"
+              id="password"
+              name="password"
+              value={formData.password}
+              onChange={handleChange}
+              placeholder="Enter your password"
+              className={errors.password ? 'error' : ''}
+            />
+            {errors.password && <span className="error-message">{errors.password}</span>}
+          </div>
+          
+          <div className="form-options">
+            <div className="remember-me">
+              <input
+                type="checkbox"
+                id="rememberMe"
+                name="rememberMe"
+                checked={formData.rememberMe}
+                onChange={handleChange}
+              />
+              <label htmlFor="rememberMe">Remember me</label>
+            </div>
+            <Link to="/forgot-password" className="forgot-password">
+              Forgot Password?
+            </Link>
+          </div>
+          
+          <button 
+            type="submit" 
+            className="auth-button"
+            disabled={isLoading}
+          >
+            {isLoading ? (
+              <>
+                <i className="fas fa-spinner fa-spin"></i> Logging in...
+              </>
+            ) : 'Log In'}
+          </button>
+        </form>
+        
+        <div className="auth-divider">
+          <span>OR</span>
+        </div>
+        
+        <div className="social-login">
+          <button 
+            className="social-button google" 
+            onClick={handleGoogleLogin}
+          >
+            <i className="fab fa-google"></i> Continue with Google
+          </button>
+          <button 
+            className="social-button facebook" 
+            onClick={handleFacebookLogin}
+          >
+            <i className="fab fa-facebook-f"></i> Continue with Facebook
+          </button>
+        </div>
+        
+        <div className="auth-footer">
+          <p>
+            Don't have an account? <Link to="/signup">Sign up</Link>
+          </p>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default LoginPage;
+</file>
+
+<file path="client/src/pages/MapsPage.jsx">
+import React, { useEffect, useState, useRef } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext.jsx';
+import { disastersAPI } from '../services/api';
+import '../styles/MapsPage.css';
+
+const MapsPage = () => {
+  const [loading, setLoading] = useState(true);
+  const [mapType, setMapType] = useState('disaster'); // Options: disaster, evacuation, relief
+  const [showReportForm, setShowReportForm] = useState(false);
+  const [userLocation, setUserLocation] = useState(null);
+  const [reportData, setReportData] = useState({
+    title: '',
+    type: 'flood',
+    description: '',
+    severity: 'medium',
+    contact: ''
+  });
+  const [disasters, setDisasters] = useState([]);
+  const [error, setError] = useState(null);
+  
+  const mapRef = useRef(null);
+  const googleMapRef = useRef(null);
+  const markersRef = useRef([]);
+  const userMarkersRef = useRef([]);
+  
+  const { isLoggedIn, currentUser } = useAuth();
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  // Map center coordinates (Mumbai, India as default)
+  const defaultCenter = { lat: 19.0760, lng: 72.8777 };
+  
+  // Map configurations for different types
+  const mapConfigs = {
+    disaster: {
+      center: defaultCenter,
+      zoom: 12,
+      mapTypeId: 'terrain',
+      styles: [
+        {
+          featureType: 'water',
+          elementType: 'geometry',
+          stylers: [{ color: '#e9e9e9' }, { lightness: 17 }]
+        },
+        {
+          featureType: 'landscape',
+          elementType: 'geometry',
+          stylers: [{ color: '#f5f5f5' }, { lightness: 20 }]
+        },
+        {
+          featureType: 'road.highway',
+          elementType: 'geometry.fill',
+          stylers: [{ color: '#ffffff' }, { lightness: 17 }]
+        },
+        {
+          featureType: 'administrative',
+          elementType: 'geometry.stroke',
+          stylers: [{ color: '#ff0000' }, { lightness: 17 }, { weight: 1.2 }]
+        }
+      ]
+    },
+    evacuation: {
+      center: defaultCenter,
+      zoom: 14,
+      mapTypeId: 'roadmap',
+      styles: [
+        {
+          featureType: 'road.highway',
+          elementType: 'geometry.fill',
+          stylers: [{ color: '#007bff' }, { lightness: 40 }]
+        },
+        {
+          featureType: 'road.arterial',
+          elementType: 'geometry.fill',
+          stylers: [{ color: '#6c757d' }, { lightness: 40 }]
+        },
+        {
+          featureType: 'road',
+          elementType: 'labels.text.fill',
+          stylers: [{ color: '#000000' }]
+        }
+      ]
+    },
+    relief: {
+      center: defaultCenter,
+      zoom: 13,
+      mapTypeId: 'roadmap',
+      styles: [
+        {
+          featureType: 'poi.medical',
+          elementType: 'geometry',
+          stylers: [{ color: '#ff5252' }, { lightness: 40 }]
+        },
+        {
+          featureType: 'poi.business',
+          elementType: 'geometry',
+          stylers: [{ color: '#4caf50' }, { lightness: 40 }]
+        },
+        {
+          featureType: 'poi.government',
+          elementType: 'geometry',
+          stylers: [{ color: '#2196f3' }, { lightness: 40 }]
+        }
+      ]
+    }
+  };
+
+  // Sample markers for different map types (fallback if API fails)
+  const sampleMarkers = {
+    disaster: [
+      { position: { lat: 19.0760, lng: 72.8777 }, title: 'High Risk Zone', icon: 'https://maps.google.com/mapfiles/ms/icons/red-dot.png' },
+      { position: { lat: 19.0860, lng: 72.8877 }, title: 'Medium Risk Zone', icon: 'https://maps.google.com/mapfiles/ms/icons/orange-dot.png' },
+      { position: { lat: 19.0660, lng: 72.8677 }, title: 'Low Risk Zone', icon: 'https://maps.google.com/mapfiles/ms/icons/yellow-dot.png' }
+    ],
+    evacuation: [
+      { position: { lat: 19.0760, lng: 72.8777 }, title: 'Evacuation Start Point', icon: 'https://maps.google.com/mapfiles/ms/icons/green-dot.png' },
+      { position: { lat: 19.0960, lng: 72.8977 }, title: 'Emergency Exit', icon: 'https://maps.google.com/mapfiles/ms/icons/blue-dot.png' },
+      { position: { lat: 19.1060, lng: 72.9077 }, title: 'Safe Zone', icon: 'https://maps.google.com/mapfiles/ms/icons/green-dot.png' }
+    ],
+    relief: [
+      { position: { lat: 19.0760, lng: 72.8777 }, title: 'Medical Center', icon: 'https://maps.google.com/mapfiles/ms/icons/red-dot.png' },
+      { position: { lat: 19.0860, lng: 72.8877 }, title: 'Food & Water Distribution', icon: 'https://maps.google.com/mapfiles/ms/icons/orange-dot.png' },
+      { position: { lat: 19.0660, lng: 72.8677 }, title: 'Shelter', icon: 'https://maps.google.com/mapfiles/ms/icons/purple-dot.png' }
+    ]
+  };
+
+  // Fetch disasters from API
+  const fetchDisasters = async () => {
+    try {
+      setError(null);
+      const response = await disastersAPI.getAllDisasters();
+      
+      if (response.data.success) {
+        setDisasters(response.data.data);
+      } else {
+        setError('Failed to fetch disaster data');
+        console.error('API error:', response.data.message);
+      }
+    } catch (err) {
+      setError('Error connecting to the server');
+      console.error('Fetch disasters error:', err);
+    }
+  };
+
+  // Initialize map when component mounts
+  useEffect(() => {
+    // Fetch disasters from API
+    fetchDisasters();
+    
+    // Function to initialize the map
+    const initializeMap = () => {
+      if (mapRef.current && window.google && window.google.maps) {
+        try {
+          // Get the configuration for the current map type
+          const config = mapConfigs[mapType];
+          
+          // Create a new map instance
+          googleMapRef.current = new window.google.maps.Map(mapRef.current, {
+            center: defaultCenter,
+            zoom: config.zoom,
+            mapTypeId: config.mapTypeId,
+            styles: config.styles,
+            fullscreenControl: false,
+            streetViewControl: false
+          });
+          
+          // Explicitly set center to Mumbai
+          googleMapRef.current.setCenter(defaultCenter);
+          
+          // Add markers
+          addMarkers();
+          
+          // Add click listener for adding user location
+          googleMapRef.current.addListener('click', (event) => {
+            if (showReportForm) {
+              setUserLocation({
+                lat: event.latLng.lat(),
+                lng: event.latLng.lng()
+              });
+              
+              // Show temporary marker at clicked location
+              addTemporaryMarker(event.latLng);
+            }
+          });
+          
+          // Set loading to false once map is loaded
+          setLoading(false);
+          
+          // Add listener for when the map is idle (fully loaded)
+          googleMapRef.current.addListener('idle', () => {
+            console.log('Map is fully loaded and centered on Mumbai');
+          });
+        } catch (error) {
+          console.error('Error initializing Google Maps:', error);
+          setLoading(false);
+        }
+      }
+    };
+
+    // Check if Google Maps API is loaded
+    if (window.google && window.google.maps) {
+      console.log('Google Maps API already loaded');
+      initializeMap();
+    } else {
+      console.log('Loading Google Maps API script');
+      // If not loaded yet, create and append the script
+      const googleMapScript = document.createElement('script');
+      googleMapScript.src = `https://maps.googleapis.com/maps/api/js?key=AIzaSyCdkxLosaiJW5u-eFcLGKIQ_am6d5Wbrw0&libraries=places`;
+      googleMapScript.async = true;
+      googleMapScript.defer = true;
+      
+      // Add event listener for when the script loads
+      googleMapScript.addEventListener('load', () => {
+        console.log('Google Maps API script loaded');
+        initializeMap();
+      });
+      
+      // Add error handler
+      googleMapScript.addEventListener('error', (error) => {
+        console.error('Error loading Google Maps API script:', error);
+        setLoading(false);
+      });
+      
+      // Append the script to the document body
+      document.body.appendChild(googleMapScript);
+      
+      // Cleanup function
+      return () => {
+        googleMapScript.removeEventListener('load', initializeMap);
+        googleMapScript.removeEventListener('error', () => {
+          console.error('Error loading Google Maps API script');
+        });
+      };
+    }
+  }, []);
+
+  // Update markers when disasters change
+  useEffect(() => {
+    if (googleMapRef.current && disasters.length > 0) {
+      addMarkers();
+    }
+  }, [disasters, mapType]);
+
+  // Add temporary marker at user's selected location
+  const addTemporaryMarker = (latLng) => {
+    // Clear any existing temporary markers
+    userMarkersRef.current.forEach(marker => marker.setMap(null));
+    userMarkersRef.current = [];
+    
+    // Add new temporary marker
+    if (googleMapRef.current) {
+      const marker = new window.google.maps.Marker({
+        position: latLng,
+        map: googleMapRef.current,
+        icon: {
+          url: 'https://maps.google.com/mapfiles/ms/icons/blue-dot.png',
+          scaledSize: new window.google.maps.Size(40, 40)
+        },
+        animation: window.google.maps.Animation.BOUNCE,
+        title: 'Your selected location'
+      });
+      
+      userMarkersRef.current.push(marker);
+    }
+  };
+
+  // Get appropriate icon based on disaster type
+  const getDisasterIcon = (disasterType) => {
+    const iconMap = {
+      flood: 'https://maps.google.com/mapfiles/ms/icons/blue-dot.png',
+      fire: 'https://maps.google.com/mapfiles/ms/icons/red-dot.png',
+      earthquake: 'https://maps.google.com/mapfiles/ms/icons/orange-dot.png',
+      cyclone: 'https://maps.google.com/mapfiles/ms/icons/purple-dot.png',
+      landslide: 'https://maps.google.com/mapfiles/ms/icons/yellow-dot.png',
+      other: 'https://maps.google.com/mapfiles/ms/icons/green-dot.png'
+    };
+    
+    return iconMap[disasterType] || iconMap.other;
+  };
+
+  // Add markers to the map
+  const addMarkers = () => {
+    if (googleMapRef.current) {
+      // Clear existing markers
+      markersRef.current.forEach(marker => marker.setMap(null));
+      markersRef.current = [];
+      
+      if (mapType === 'disaster' && disasters.length > 0) {
+        // Add disaster markers from API data
+        disasters.forEach(disaster => {
+          if (disaster.location && disaster.location.coordinates && disaster.location.coordinates.length === 2) {
+            const position = {
+              lat: disaster.location.coordinates[1],
+              lng: disaster.location.coordinates[0]
+            };
+            
+            const marker = new window.google.maps.Marker({
+              position: position,
+              map: googleMapRef.current,
+              title: disaster.title,
+              icon: getDisasterIcon(disaster.type),
+              animation: window.google.maps.Animation.DROP
+            });
+            
+            // Add info window
+            const infoWindow = new window.google.maps.InfoWindow({
+              content: `
+                <div class="disaster-info-window">
+                  <h3>${disaster.title}</h3>
+                  <p><strong>Type:</strong> ${disaster.type}</p>
+                  <p><strong>Severity:</strong> ${disaster.severity}</p>
+                  <p><strong>Description:</strong> ${disaster.description}</p>
+                  <p><strong>Status:</strong> ${disaster.status}</p>
+                  <p><strong>Reported:</strong> ${new Date(disaster.createdAt).toLocaleString()}</p>
+                </div>
+              `
+            });
+            
+            marker.addListener('click', () => {
+              infoWindow.open(googleMapRef.current, marker);
+            });
+            
+            markersRef.current.push(marker);
+          }
+        });
+      } else {
+        // Add sample markers for other map types or if no disasters
+        const markers = mapType === 'disaster' && disasters.length === 0 ? 
+          sampleMarkers[mapType] : sampleMarkers[mapType];
+        
+        markers.forEach(markerInfo => {
+          const marker = new window.google.maps.Marker({
+            position: markerInfo.position,
+            map: googleMapRef.current,
+            title: markerInfo.title,
+            icon: markerInfo.icon,
+            animation: window.google.maps.Animation.DROP
+          });
+          
+          // Add info window
+          const infoWindow = new window.google.maps.InfoWindow({
+            content: `<div><strong>${markerInfo.title}</strong></div>`
+          });
+          
+          marker.addListener('click', () => {
+            infoWindow.open(googleMapRef.current, marker);
+          });
+          
+          // Store marker reference for later cleanup
+          markersRef.current.push(marker);
+        });
+      }
+    }
+  };
+
+  // Handle map type change
+  const handleMapTypeChange = (type) => {
+    setLoading(true);
+    setMapType(type);
+    
+    // Short delay to show loading state
+    setTimeout(() => {
+      if (googleMapRef.current) {
+        const config = mapConfigs[type];
+        googleMapRef.current.setOptions({
+          center: config.center,
+          zoom: config.zoom,
+          mapTypeId: config.mapTypeId,
+          styles: config.styles
+        });
+        
+        // Explicitly set center again
+        googleMapRef.current.setCenter(config.center);
+        
+        // Clear existing markers and add new ones
+        addMarkers();
+      }
+      
+      setLoading(false);
+    }, 800);
+  };
+
+  // Toggle report form - check if user is logged in
+  const toggleReportForm = () => {
+    if (!isLoggedIn()) {
+      // Redirect to login page with current location
+      navigate('/login', { state: { from: location } });
+      return;
+    }
+    
+    setShowReportForm(!showReportForm);
+    
+    // Clear temporary markers when closing form
+    if (showReportForm) {
+      userMarkersRef.current.forEach(marker => marker.setMap(null));
+      userMarkersRef.current = [];
+      setUserLocation(null);
+    }
+  };
+
+  // Handle input change in the report form
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setReportData({
+      ...reportData,
+      [name]: value
+    });
+  };
+
+  // Handle report submission
+  const handleSubmitReport = async (e) => {
+    e.preventDefault();
+    
+    if (!userLocation) {
+      alert('Please select your location on the map first');
+      return;
+    }
+    
+    setLoading(true);
+    
+    try {
+      // Create disaster data for API
+      const disasterData = {
+        title: reportData.title,
+        description: reportData.description,
+        type: reportData.type,
+        severity: reportData.severity,
+        location: {
+          type: 'Point',
+          coordinates: [userLocation.lng, userLocation.lat],
+          address: 'Selected location'
+        },
+        evacuationZone: {
+          type: 'Polygon',
+          coordinates: [[
+            [userLocation.lng - 0.01, userLocation.lat - 0.01],
+            [userLocation.lng + 0.01, userLocation.lat - 0.01],
+            [userLocation.lng + 0.01, userLocation.lat + 0.01],
+            [userLocation.lng - 0.01, userLocation.lat + 0.01],
+            [userLocation.lng - 0.01, userLocation.lat - 0.01]
+          ]]
+        }
+      };
+      
+      // Submit to API
+      const response = await disastersAPI.createDisaster(disasterData);
+      
+      if (response.data.success) {
+        // Clear form and close it
+        setReportData({
+          title: '',
+          type: 'flood',
+          description: '',
+          severity: 'medium',
+          contact: ''
+        });
+        setUserLocation(null);
+        setShowReportForm(false);
+        
+        // Clear temporary markers
+        userMarkersRef.current.forEach(marker => marker.setMap(null));
+        userMarkersRef.current = [];
+        
+        // Refresh disasters from API
+        await fetchDisasters();
+        
+        // Show success message
+        alert('Your disaster report has been submitted successfully!');
+      } else {
+        alert(`Failed to submit report: ${response.data.message || 'Unknown error'}`);
+      }
+    } catch (error) {
+      console.error('Submit report error:', error);
+      alert('An error occurred while submitting your report. Please try again.');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  // Get user's current location
+  const getCurrentLocation = () => {
+    if (navigator.geolocation) {
+      setLoading(true);
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          const userPos = {
+            lat: position.coords.latitude,
+            lng: position.coords.longitude
+          };
+          
+          setUserLocation(userPos);
+          
+          // Center map on user location
+          if (googleMapRef.current) {
+            googleMapRef.current.setCenter(userPos);
+            googleMapRef.current.setZoom(15);
+            
+            // Add temporary marker
+            addTemporaryMarker(userPos);
+          }
+          
+          setLoading(false);
+        },
+        (error) => {
+          console.error('Error getting user location:', error);
+          alert('Unable to get your current location. Please select your location on the map.');
+          setLoading(false);
+        }
+      );
+    } else {
+      alert('Geolocation is not supported by your browser. Please select your location on the map.');
+    }
+  };
+
+  return (
+    <div className="maps-container">
+      <div className="maps-header">
+        <h1>Disaster Management Maps</h1>
+        <p>Interactive maps showing disaster zones, evacuation routes, and relief centers</p>
+      </div>
+
+      <div className="map-controls">
+        <button 
+          className={`map-button ${mapType === 'disaster' ? 'active' : ''}`}
+          onClick={() => handleMapTypeChange('disaster')}
+        >
+          <i className="fas fa-exclamation-triangle"></i> Disaster Zones
+        </button>
+        <button 
+          className={`map-button ${mapType === 'evacuation' ? 'active' : ''}`}
+          onClick={() => handleMapTypeChange('evacuation')}
+        >
+          <i className="fas fa-running"></i> Evacuation Routes
+        </button>
+        <button 
+          className={`map-button ${mapType === 'relief' ? 'active' : ''}`}
+          onClick={() => handleMapTypeChange('relief')}
+        >
+          <i className="fas fa-hands-helping"></i> Relief Centers
+        </button>
+        <button 
+          className={`map-button report-button ${showReportForm ? 'active' : ''}`}
+          onClick={toggleReportForm}
+        >
+          <i className="fas fa-exclamation-circle"></i> Report Disaster
+        </button>
+      </div>
+
+      <div className="map-container">
+        {loading ? (
+          <div className="map-loading">
+            <i className="fas fa-spinner fa-spin"></i>
+            <p>Loading map data...</p>
+          </div>
+        ) : null}
+        
+        {error && (
+          <div className="map-error">
+            <i className="fas fa-exclamation-circle"></i>
+            <p>{error}</p>
+          </div>
+        )}
+        
+        <div 
+          ref={mapRef} 
+          className="google-map"
+          style={{ height: '100%', width: '100%', position: 'absolute', top: 0, left: 0 }}
+        ></div>
+        
+        <div className="map-overlay">
+          {mapType === 'disaster' && (
+            <>
+              <h3>Disaster Zones</h3>
+              <p>Current active disaster zones and affected areas</p>
+              <div className="map-legend">
+                <div className="legend-item">
+                  <span className="legend-color high"></span>
+                  <span>High Risk</span>
+                </div>
+                <div className="legend-item">
+                  <span className="legend-color medium"></span>
+                  <span>Medium Risk</span>
+                </div>
+                <div className="legend-item">
+                  <span className="legend-color low"></span>
+                  <span>Low Risk</span>
+                </div>
+              </div>
+            </>
+          )}
+          
+          {mapType === 'evacuation' && (
+            <>
+              <h3>Evacuation Routes</h3>
+              <p>Safe evacuation routes and emergency exits</p>
+              <div className="map-legend">
+                <div className="legend-item">
+                  <span className="legend-line primary"></span>
+                  <span>Primary Route</span>
+                </div>
+                <div className="legend-item">
+                  <span className="legend-line secondary"></span>
+                  <span>Secondary Route</span>
+                </div>
+                <div className="legend-item">
+                  <span className="legend-icon"></span>
+                  <span>Emergency Exit</span>
+                </div>
+              </div>
+            </>
+          )}
+          
+          {mapType === 'relief' && (
+            <>
+              <h3>Relief Centers</h3>
+              <p>Locations of relief centers, medical facilities, and supply distribution</p>
+              <div className="map-legend">
+                <div className="legend-item">
+                  <span className="legend-icon medical"></span>
+                  <span>Medical Center</span>
+                </div>
+                <div className="legend-item">
+                  <span className="legend-icon food"></span>
+                  <span>Food & Water</span>
+                </div>
+                <div className="legend-item">
+                  <span className="legend-icon shelter"></span>
+                  <span>Shelter</span>
+                </div>
+              </div>
+            </>
+          )}
+        </div>
+        
+        {showReportForm && (
+          <div className="report-form-container">
+            <div className="report-form">
+              <h3>Report a Disaster</h3>
+              <p className="form-instruction">
+                {userLocation 
+                  ? "Location selected. Fill the form below to submit your report." 
+                  : "Click on the map to select your location or use the button below."}
+              </p>
+              
+              {!userLocation && (
+                <button 
+                  className="location-button"
+                  onClick={getCurrentLocation}
+                >
+                  <i className="fas fa-map-marker-alt"></i> Use My Current Location
+                </button>
+              )}
+              
+              <form onSubmit={handleSubmitReport}>
+                <div className="form-group">
+                  <label htmlFor="title">Title:</label>
+                  <input 
+                    type="text" 
+                    id="title" 
+                    name="title" 
+                    value={reportData.title}
+                    onChange={handleInputChange}
+                    placeholder="Enter a title for your report"
+                    required
+                  />
+                </div>
+                
+                <div className="form-group">
+                  <label htmlFor="type">Disaster Type:</label>
+                  <select 
+                    id="type" 
+                    name="type" 
+                    value={reportData.type}
+                    onChange={handleInputChange}
+                    required
+                  >
+                    <option value="flood">Flood</option>
+                    <option value="fire">Fire</option>
+                    <option value="earthquake">Earthquake</option>
+                    <option value="hurricane">Hurricane/Cyclone</option>
+                    <option value="tornado">Tornado</option>
+                    <option value="tsunami">Tsunami</option>
+                    <option value="landslide">Landslide</option>
+                    <option value="other">Other</option>
+                  </select>
+                </div>
+                
+                <div className="form-group">
+                  <label htmlFor="severity">Severity:</label>
+                  <select 
+                    id="severity" 
+                    name="severity" 
+                    value={reportData.severity}
+                    onChange={handleInputChange}
+                    required
+                  >
+                    <option value="low">Low</option>
+                    <option value="medium">Medium</option>
+                    <option value="high">High</option>
+                    <option value="critical">Critical</option>
+                  </select>
+                </div>
+                
+                <div className="form-group">
+                  <label htmlFor="description">Description:</label>
+                  <textarea 
+                    id="description" 
+                    name="description" 
+                    value={reportData.description}
+                    onChange={handleInputChange}
+                    placeholder="Briefly describe the situation..."
+                    required
+                  ></textarea>
+                </div>
+                
+                <div className="form-group">
+                  <label htmlFor="contact">Contact Number:</label>
+                  <input 
+                    type="text" 
+                    id="contact" 
+                    name="contact" 
+                    value={reportData.contact}
+                    onChange={handleInputChange}
+                    placeholder="Enter your contact number"
+                    required
+                  />
+                </div>
+                
+                <div className="form-actions">
+                  <button 
+                    type="button" 
+                    className="cancel-button"
+                    onClick={toggleReportForm}
+                  >
+                    Cancel
+                  </button>
+                  <button 
+                    type="submit" 
+                    className="submit-button"
+                    disabled={!userLocation || loading}
+                  >
+                    {loading ? (
+                      <>
+                        <i className="fas fa-spinner fa-spin"></i> Submitting...
+                      </>
+                    ) : 'Submit Report'}
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        )}
+      </div>
+
+      <div className="map-info">
+        <div className="info-card">
+          <i className="fas fa-info-circle"></i>
+          <h3>Map Information</h3>
+          <p>These maps are updated regularly to provide the most current information during disaster situations. For emergency assistance, please call the emergency hotline at <strong>1-800-DISASTER</strong>.</p>
+        </div>
+        <div className="info-card">
+          <i className="fas fa-mobile-alt"></i>
+          <h3>Mobile Access</h3>
+          <p>Download our mobile app to access these maps offline and receive real-time alerts and notifications during emergencies.</p>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default MapsPage;
+</file>
+
+<file path="client/src/pages/PreparednessPage.jsx">
+import React from 'react';
+import '../styles/PreparednessPage.css';
+
+const PreparednessPage = () => {
+  const disasterPreparedness = [
+    {
+      id: 1,
+      name: "Earthquake",
+      tips: [
+        "Identify safe spots under sturdy furniture and away from windows.",
+        "Secure heavy furniture and appliances to prevent tipping.",
+        "Have an emergency kit with water, food, flashlight, and first-aid supplies.",
+        "Practice \"Drop, Cover, and Hold On\" drills regularly."
+      ],
+      icon: "fa-house-damage"
+    },
+    {
+      id: 2,
+      name: "Flood",
+      tips: [
+        "Know your area's flood risk and evacuation routes.",
+        "Store important documents in waterproof containers.",
+        "Keep emergency supplies and move valuables to higher ground.",
+        "Avoid walking or driving through floodwaters."
+      ],
+      icon: "fa-water"
+    },
+    {
+      id: 3,
+      name: "Hurricane",
+      tips: [
+        "Install storm shutters and reinforce doors/windows.",
+        "Prepare a disaster supply kit with food, water, and medications.",
+        "Know your evacuation plan and shelter locations.",
+        "Stay indoors and away from windows during the storm."
+      ],
+      icon: "fa-wind"
+    },
+    {
+      id: 4,
+      name: "Tornado",
+      tips: [
+        "Identify a safe shelter (like a basement or interior room).",
+        "Secure outdoor furniture and remove loose debris.",
+        "Stay updated on weather alerts and warnings.",
+        "Practice tornado drills with your family."
+      ],
+      icon: "fa-tornado"
+    },
+    {
+      id: 5,
+      name: "Wildfire",
+      tips: [
+        "Create a defensible space by clearing dry vegetation around your home.",
+        "Prepare an emergency kit with essential supplies.",
+        "Plan multiple evacuation routes.",
+        "Keep important documents and valuables ready to grab quickly."
+      ],
+      icon: "fa-fire"
+    },
+    {
+      id: 6,
+      name: "Landslide",
+      tips: [
+        "Identify landslide-prone areas near you.",
+        "Avoid construction or living in high-risk zones.",
+        "Listen to weather alerts, especially during heavy rain.",
+        "Have an emergency plan and evacuation route ready."
+      ],
+      icon: "fa-mountain"
+    },
+    {
+      id: 7,
+      name: "Tsunami",
+      tips: [
+        "If near a coast, know evacuation routes and high ground locations.",
+        "Move inland or to higher ground immediately after strong shaking.",
+        "Stay updated on tsunami warnings via radio or alerts.",
+        "Do not return to low-lying areas until officials declare it safe."
+      ],
+      icon: "fa-water"
+    },
+    {
+      id: 8,
+      name: "Blizzard & Extreme Cold",
+      tips: [
+        "Keep extra food, water, and blankets in case of power outages.",
+        "Insulate your home and dress in layers.",
+        "Avoid unnecessary travel during severe storms.",
+        "Have alternative heating sources, but use them safely to prevent carbon monoxide poisoning."
+      ],
+      icon: "fa-snowflake"
+    },
+    {
+      id: 9,
+      name: "Drought",
+      tips: [
+        "Conserve water by fixing leaks and using efficient appliances.",
+        "Store extra water for emergencies.",
+        "Plant drought-resistant vegetation.",
+        "Follow local water restrictions and guidelines."
+      ],
+      icon: "fa-tint-slash"
+    },
+    {
+      id: 10,
+      name: "Pandemic",
+      tips: [
+        "Maintain hygiene by washing hands regularly.",
+        "Stay updated on health advisories and vaccinations.",
+        "Stock up on essential medicines, food, and hygiene products.",
+        "Practice social distancing and wear masks if required."
+      ],
+      icon: "fa-virus"
+    }
+  ];
+
+  return (
+    <div className="preparedness-container">
+      <div className="preparedness-header">
+        <h1>Disaster Preparedness</h1>
+        <p>Learn how to prepare yourself, your family, and your community for various types of disasters.</p>
+      </div>
+      
+      <div className="disaster-cards-container">
+        {disasterPreparedness.map((disaster) => (
+          <div key={disaster.id} className="disaster-card">
+            <div className="disaster-card-header">
+              <i className={`fas ${disaster.icon}`}></i>
+              <h2>{disaster.name}</h2>
+            </div>
+            <div className="disaster-card-body">
+              <ul>
+                {disaster.tips.map((tip, index) => (
+                  <li key={index}>{tip}</li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+};
+
+export default PreparednessPage;
+</file>
+
+<file path="client/src/pages/ResourcesPage.jsx">
+import React from 'react';
+
+const ResourcesPage = () => {
+  return (
+    <div className="container mt-5">
+      <h1>Disaster Resources</h1>
+      <p>Find resources for disaster preparedness, response, and recovery.</p>
+      <div className="alert alert-info">
+        This page is under construction. Check back soon for more information.
+      </div>
+    </div>
+  );
+};
+
+export default ResourcesPage;
+</file>
+
+<file path="client/src/pages/SignupPage.jsx">
+import React, { useState } from 'react';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext.jsx';
+import '../styles/AuthPages.css';
+
+// Style for the error message
+const errorStyle = {
+  backgroundColor: '#f8d7da',
+  color: '#721c24',
+  padding: '10px 15px',
+  marginBottom: '15px',
+  borderRadius: '4px',
+  border: '1px solid #f5c6cb',
+  textAlign: 'center'
+};
+
+const SignupPage = () => {
+  const [formData, setFormData] = useState({
+    fullName: '',
+    email: '',
+    password: '',
+    confirmPassword: '',
+    agreeTerms: false
+  });
+  
+  const [errors, setErrors] = useState({});
+  const [isLoading, setIsLoading] = useState(false);
+  const [signupError, setSignupError] = useState('');
+  const { register } = useAuth();
+  const navigate = useNavigate();
+  const location = useLocation();
+  
+  // Get the redirect path from location state or default to home page
+  const from = location.state?.from?.pathname || '/';
+  
+  const handleChange = (e) => {
+    const { name, value, type, checked } = e.target;
+    setFormData({
+      ...formData,
+      [name]: type === 'checkbox' ? checked : value
+    });
+    
+    // Clear error when user starts typing
+    if (errors[name]) {
+      setErrors({
+        ...errors,
+        [name]: ''
+      });
+    }
+    
+    // Clear signup error when user changes input
+    if (signupError) {
+      setSignupError('');
+    }
+  };
+  
+  const validateForm = () => {
+    const newErrors = {};
+    
+    if (!formData.fullName.trim()) {
+      newErrors.fullName = 'Full name is required';
+    }
+    
+    if (!formData.email) {
+      newErrors.email = 'Email is required';
+    } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
+      newErrors.email = 'Email is invalid';
+    }
+    
+    if (!formData.password) {
+      newErrors.password = 'Password is required';
+    } else if (formData.password.length < 6) {
+      newErrors.password = 'Password must be at least 6 characters';
+    }
+    
+    if (formData.password !== formData.confirmPassword) {
+      newErrors.confirmPassword = 'Passwords do not match';
+    }
+    
+    if (!formData.agreeTerms) {
+      newErrors.agreeTerms = 'You must agree to the terms and conditions';
+    }
+    
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+  
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    
+    if (validateForm()) {
+      setIsLoading(true);
+      setSignupError('');
+      
+      try {
+        const userData = {
+          fullName: formData.fullName,
+          email: formData.email,
+          password: formData.password
+        };
+        
+        const result = await register(userData);
+        
+        if (result.success) {
+          // Redirect to the page they were trying to access or home
+          navigate(from, { replace: true });
+        } else {
+          setSignupError(result.message || 'Registration failed. Please try again.');
+        }
+      } catch (error) {
+        setSignupError('An error occurred during registration. Please try again.');
+        console.error('Registration error:', error);
+      } finally {
+        setIsLoading(false);
+      }
+    }
+  };
+  
+  const handleGoogleSignup = () => {
+    window.location.href = 'http://localhost:5000/api/auth/google';
+  };
+
+  const handleFacebookSignup = () => {
+    window.location.href = 'http://localhost:5000/api/auth/facebook';
+  };
+
+  return (
+    <div className="auth-container">
+      <div className="auth-card">
+        <div className="auth-header">
+          <h2>Create an Account</h2>
+          <p>Join our disaster management community</p>
+        </div>
+        
+        {location.state?.from && (
+          <div className="auth-message">
+            <p>You need to create an account to access that page</p>
+          </div>
+        )}
+        
+        {signupError && (
+          <div style={errorStyle}>
+            <p>{signupError}</p>
+          </div>
+        )}
+        
+        <form className="auth-form" onSubmit={handleSubmit}>
+          <div className="form-group">
+            <label htmlFor="fullName">Full Name</label>
+            <input
+              type="text"
+              id="fullName"
+              name="fullName"
+              value={formData.fullName}
+              onChange={handleChange}
+              placeholder="Enter your full name"
+              className={errors.fullName ? 'error' : ''}
+            />
+            {errors.fullName && <span className="error-message">{errors.fullName}</span>}
+          </div>
+          
+          <div className="form-group">
+            <label htmlFor="email">Email Address</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+              placeholder="Enter your email"
+              className={errors.email ? 'error' : ''}
+            />
+            {errors.email && <span className="error-message">{errors.email}</span>}
+          </div>
+          
+          <div className="form-group">
+            <label htmlFor="password">Password</label>
+            <input
+              type="password"
+              id="password"
+              name="password"
+              value={formData.password}
+              onChange={handleChange}
+              placeholder="Create a password"
+              className={errors.password ? 'error' : ''}
+            />
+            {errors.password && <span className="error-message">{errors.password}</span>}
+          </div>
+          
+          <div className="form-group">
+            <label htmlFor="confirmPassword">Confirm Password</label>
+            <input
+              type="password"
+              id="confirmPassword"
+              name="confirmPassword"
+              value={formData.confirmPassword}
+              onChange={handleChange}
+              placeholder="Confirm your password"
+              className={errors.confirmPassword ? 'error' : ''}
+            />
+            {errors.confirmPassword && <span className="error-message">{errors.confirmPassword}</span>}
+          </div>
+          
+          <div className="form-group terms-checkbox">
+            <div className="checkbox-container">
+              <input
+                type="checkbox"
+                id="agreeTerms"
+                name="agreeTerms"
+                checked={formData.agreeTerms}
+                onChange={handleChange}
+                className={errors.agreeTerms ? 'error' : ''}
+              />
+              <label htmlFor="agreeTerms">
+                I agree to the <Link to="/terms">Terms of Service</Link> and <Link to="/privacy">Privacy Policy</Link>
+              </label>
+            </div>
+            {errors.agreeTerms && <span className="error-message">{errors.agreeTerms}</span>}
+          </div>
+          
+          <button 
+            type="submit" 
+            className="auth-button"
+            disabled={isLoading}
+          >
+            {isLoading ? (
+              <>
+                <i className="fas fa-spinner fa-spin"></i> Creating Account...
+              </>
+            ) : 'Sign Up'}
+          </button>
+        </form>
+        
+        <div className="auth-divider">
+          <span>OR</span>
+        </div>
+        
+        <div className="social-login">
+          <button 
+            className="social-button google" 
+            onClick={handleGoogleSignup}
+          >
+            <i className="fab fa-google"></i> Continue with Google
+          </button>
+          <button 
+            className="social-button facebook" 
+            onClick={handleFacebookSignup}
+          >
+            <i className="fab fa-facebook-f"></i> Continue with Facebook
+          </button>
+        </div>
+        
+        <div className="auth-footer">
+          <p>
+            Already have an account? <Link to="/login">Log in</Link>
+          </p>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default SignupPage;
+</file>
+
+<file path="client/src/services/api.js">
+import axios from 'axios';
+
+const API_URL = 'http://localhost:5000/api';
+
+// Create axios instance
+const api = axios.create({
+  baseURL: API_URL,
+  headers: {
+    'Content-Type': 'application/json'
+  },
+  withCredentials: true // Enable sending cookies with requests
+});
+
+// Add request interceptor to add auth token to requests
+api.interceptors.request.use(
+  (config) => {
+    const token = localStorage.getItem('token');
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`;
+    }
+    return config;
+  },
+  (error) => {
+    return Promise.reject(error);
+  }
+);
+
+// Auth API
+export const authAPI = {
+  register: (userData) => api.post('/auth/register', userData),
+  login: (credentials) => api.post('/auth/login', credentials),
+  getCurrentUser: () => api.get('/auth/me'),
+  updateProfile: (userData) => api.put('/auth/me', userData)
+};
+
+// Disasters API
+export const disastersAPI = {
+  getAllDisasters: (filters = {}) => api.get('/disasters', { params: filters }),
+  getDisasterById: (id) => api.get(`/disasters/${id}`),
+  getDisastersInRadius: (lat, lng, distance) => api.get(`/disasters/radius/${lat}/${lng}/${distance}`),
+  getDisasterStats: () => api.get('/disasters/stats'),
+  createDisaster: (disasterData) => api.post('/disasters', disasterData),
+  updateDisaster: (id, disasterData) => api.put(`/disasters/${id}`, disasterData),
+  deleteDisaster: (id) => api.delete(`/disasters/${id}`)
+};
+
+export default api;
+</file>
+
+<file path="client/src/styles/AuthPages.css">
+/* Auth Pages Styles */
+.auth-container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+  background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+    url('https://images.unsplash.com/photo-1523861751938-121b5323b48b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1920&q=80');
+  background-size: cover;
+  background-position: center;
+}
+
+.auth-card {
+  max-width: 500px;
+  width: 100%;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.auth-header {
+  padding: 30px;
+  text-align: center;
+  background-color: #f8f9fa;
+  border-bottom: 1px solid #eee;
+}
+
+.auth-header h2 {
+  font-size: 2rem;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.auth-header p {
+  color: #666;
+  font-size: 1rem;
+}
+
+.auth-message {
+  background-color: #fff3cd;
+  color: #856404;
+  padding: 15px;
+  margin: 0 30px;
+  border-radius: 5px;
+  text-align: center;
+  font-size: 0.95rem;
+  border-left: 4px solid #ffc107;
+}
+
+.auth-form {
+  padding: 30px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 500;
+  color: #333;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 12px 15px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
+}
+
+.form-group input:focus {
+  border-color: #f8673a;
+  outline: none;
+}
+
+.form-group input.error {
+  border-color: #dc3545;
+}
+
+.error-message {
+  color: #dc3545;
+  font-size: 0.85rem;
+  margin-top: 5px;
+  display: block;
+}
+
+.form-options {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.remember-me {
+  display: flex;
+  align-items: center;
+}
+
+.remember-me input {
+  margin-right: 8px;
+}
+
+.forgot-password {
+  color: #f8673a;
+  text-decoration: none;
+  font-size: 0.9rem;
+}
+
+.forgot-password:hover {
+  text-decoration: underline;
+}
+
+.auth-button {
+  width: 100%;
+  padding: 12px;
+  background-color: #f8673a;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.auth-button:hover {
+  background-color: #e55a2e;
+}
+
+.auth-button:disabled {
+  background-color: #f8673a80;
+  cursor: not-allowed;
+}
+
+.auth-divider {
+  display: flex;
+  align-items: center;
+  margin: 20px 30px;
+}
+
+.auth-divider::before,
+.auth-divider::after {
+  content: '';
+  flex: 1;
+  border-bottom: 1px solid #eee;
+}
+
+.auth-divider span {
+  padding: 0 10px;
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.social-login {
+  padding: 0 30px 20px;
+}
+
+.social-button {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 15px;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  transition: background-color 0.3s ease;
+}
+
+.social-button.google {
+  background-color: #fff;
+  color: #333;
+  border: 1px solid #ddd;
+}
+
+.social-button.google:hover {
+  background-color: #f1f1f1;
+}
+
+.social-button.facebook {
+  background-color: #3b5998;
+  color: white;
+}
+
+.social-button.facebook:hover {
+  background-color: #344e86;
+}
+
+.auth-footer {
+  padding: 20px 30px;
+  text-align: center;
+  background-color: #f8f9fa;
+  border-top: 1px solid #eee;
+}
+
+.auth-footer p {
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.auth-footer a {
+  color: #f8673a;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.auth-footer a:hover {
+  text-decoration: underline;
+}
+
+/* Terms checkbox styling */
+.terms-checkbox {
+  margin-bottom: 25px;
+}
+
+.checkbox-container {
+  display: flex;
+  align-items: flex-start;
+}
+
+.checkbox-container input {
+  width: auto;
+  margin-right: 10px;
+  margin-top: 3px;
+}
+
+.checkbox-container label {
+  font-size: 0.9rem;
+  margin-bottom: 0;
+  line-height: 1.4;
+}
+
+.checkbox-container a {
+  color: #f8673a;
+  text-decoration: none;
+}
+
+.checkbox-container a:hover {
+  text-decoration: underline;
+}
+
+/* Responsive styles */
+@media screen and (max-width: 576px) {
+  .auth-header {
+    padding: 25px 20px;
+  }
+  
+  .auth-header h2 {
+    font-size: 1.8rem;
+  }
+  
+  .auth-form {
+    padding: 20px;
+  }
+  
+  .social-login {
+    padding: 0 20px 15px;
+  }
+  
+  .auth-footer {
+    padding: 15px 20px;
+  }
+}
+</file>
+
+<file path="client/src/styles/ContactPage.css">
+/* ContactPage.css */
+
+.contact-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+.contact-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.contact-header h1 {
+  font-size: 2.5rem;
+  color: #2c3e50;
+  margin-bottom: 1rem;
+}
+
+.contact-header p {
+  font-size: 1.2rem;
+  color: #7f8c8d;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.contact-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+}
+
+/* Contact Form Styles */
+.contact-form-section {
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  padding: 2rem;
+}
+
+.contact-form-section h2 {
+  color: #2c3e50;
+  margin-bottom: 1.5rem;
+  font-size: 1.8rem;
+}
+
+.contact-form .form-group {
+  margin-bottom: 1.5rem;
+}
+
+.contact-form label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  color: #34495e;
+}
+
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  padding: 0.8rem;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 1rem;
+  transition: border-color 0.3s;
+  background-color: #f8f9fa;
+  color: #495057;
+}
+
+.contact-form input::placeholder,
+.contact-form textarea::placeholder {
+  color: #adb5bd;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+  border-color: #3498db;
+  outline: none;
+  background-color: #fff;
+}
+
+.contact-form .submit-btn {
+  background-color: #3498db;
+  color: white;
+  border: none;
+  padding: 0.8rem 1.5rem;
+  font-size: 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.contact-form .submit-btn:hover {
+  background-color: #2980b9;
+}
+
+/* Emergency Contacts Styles */
+.emergency-contacts-section {
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  padding: 2rem;
+}
+
+.emergency-contacts-section h2 {
+  color: #2c3e50;
+  margin-bottom: 1.5rem;
+  font-size: 1.8rem;
+  text-align: center;
+}
+
+.emergency-contacts-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 1.5rem;
+}
+
+.emergency-contact-card {
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  padding: 1.5rem;
+  transition: transform 0.3s, box-shadow 0.3s;
+  height: 100%;
+}
+
+.emergency-contact-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.contact-content-centered {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  height: 100%;
+}
+
+.contact-icon {
+  background-color: #e74c3c;
+  color: white;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.contact-icon i {
+  font-size: 1.5rem;
+}
+
+.contact-details {
+  width: 100%;
+}
+
+.contact-details h3 {
+  margin: 0 0 0.5rem 0;
+  font-size: 1.2rem;
+  color: #2c3e50;
+}
+
+.contact-number {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #e74c3c;
+  margin: 0.5rem 0;
+}
+
+.contact-description {
+  font-size: 0.9rem;
+  color: #7f8c8d;
+  margin: 0;
+}
+
+/* Service-specific icon colors */
+.emergency-contact-card:nth-child(1) .contact-icon {
+  background-color: #3498db; /* Police - Blue */
+}
+
+.emergency-contact-card:nth-child(2) .contact-icon {
+  background-color: #e74c3c; /* Ambulance - Red */
+}
+
+.emergency-contact-card:nth-child(3) .contact-icon {
+  background-color: #9b59b6; /* Women Helpline - Purple */
+}
+
+.emergency-contact-card:nth-child(4) .contact-icon {
+  background-color: #2ecc71; /* Child Helpline - Green */
+}
+
+.emergency-contact-card:nth-child(5) .contact-icon {
+  background-color: #f39c12; /* Citizens Call Centre - Orange */
+}
+
+.emergency-contact-card:nth-child(6) .contact-icon {
+  background-color: #34495e; /* Crime Stopper - Dark Blue */
+}
+
+.emergency-contact-card:nth-child(7) .contact-icon {
+  background-color: #d35400; /* Rescue and Relief - Dark Orange */
+}
+
+.emergency-contact-card:nth-child(8) .contact-icon {
+  background-color: #16a085; /* Railway Helpline - Teal */
+}
+
+.emergency-contact-card:nth-child(9) .contact-icon {
+  background-color: #7f8c8d; /* NIC Service Desk - Gray */
+}
+
+/* Responsive adjustments */
+@media (max-width: 992px) {
+  .contact-content {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  
+  .emergency-contacts-container {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  }
+}
+
+@media (max-width: 576px) {
+  .emergency-contacts-container {
+    grid-template-columns: 1fr;
+  }
+  
+  .contact-header h1 {
+    font-size: 2rem;
+  }
+  
+  .contact-header p {
+    font-size: 1rem;
+  }
+  
+  .contact-form-section,
+  .emergency-contacts-section {
+    padding: 1.5rem;
+  }
+}
+</file>
+
+<file path="client/src/styles/DisastersPage.css">
+/* DisastersPage.css */
+
+.disasters-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+.disasters-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.disasters-header h1 {
+  font-size: 2.5rem;
+  color: #2c3e50;
+  margin-bottom: 1rem;
+}
+
+.disasters-header p {
+  font-size: 1.2rem;
+  color: #7f8c8d;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* Disaster Cards Section Styles */
+.disaster-cards-section {
+  margin-bottom: 4rem;
+}
+
+.cards-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.weather-card {
+  width: 100%;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  background-color: #fff;
+  transition: all 0.3s ease;
+  padding-bottom: 1rem;
+}
+
+/* Weather Card Background Classes */
+.default-bg {
+  background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+  color: white;
+}
+
+.clear-bg {
+  background: linear-gradient(135deg, #f6d365 0%, #fda085 100%);
+  color: #333;
+}
+
+.clouds-bg {
+  background: linear-gradient(135deg, #bdc3c7 0%, #2c3e50 100%);
+  color: white;
+}
+
+.rain-bg {
+  background: linear-gradient(135deg, #4da0b0 0%, #d39d38 100%);
+  color: white;
+}
+
+.thunderstorm-bg {
+  background: linear-gradient(135deg, #373b44 0%, #4286f4 100%);
+  color: white;
+}
+
+.snow-bg {
+  background: linear-gradient(135deg, #e6dada 0%, #274046 100%);
+  color: white;
+}
+
+.mist-bg {
+  background: linear-gradient(135deg, #606c88 0%, #3f4c6b 100%);
+  color: white;
+}
+
+/* Weather Search */
+.weather-search {
+  padding: 1.5rem;
+  background-color: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+}
+
+.weather-search form {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.weather-search input {
+  flex: 1;
+  padding: 0.8rem 1rem;
+  border: none;
+  border-radius: 30px;
+  background-color: rgba(255, 255, 255, 0.9);
+  font-size: 1rem;
+  outline: none;
+  transition: all 0.3s ease;
+  color: #000000;
+}
+
+.weather-search input::placeholder {
+  color: #777777;
+}
+
+.weather-search button {
+  width: 45px;
+  height: 45px;
+  border: none;
+  border-radius: 50%;
+  background-color: #f8673a;
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.weather-search button:hover {
+  background-color: #e55a2b;
+  transform: scale(1.05);
+}
+
+/* Weather Loading */
+.weather-loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem 1.5rem;
+  text-align: center;
+}
+
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  border-top-color: white;
+  animation: spin 1s ease-in-out infinite;
+  margin-bottom: 1rem;
+}
+
+.spinner-small {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  border-top-color: white;
+  animation: spin 1s ease-in-out infinite;
+  margin-right: 0.5rem;
+  vertical-align: middle;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Weather Error */
+.weather-error {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem 1.5rem;
+  text-align: center;
+}
+
+.weather-error i {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+/* Weather Content */
+.weather-content {
+  padding: 1.5rem;
+}
+
+.weather-header {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.weather-header h3 {
+  font-size: 1.8rem;
+  margin-bottom: 0.5rem;
+}
+
+.weather-date {
+  opacity: 0.8;
+  font-size: 1rem;
+}
+
+.weather-info {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.weather-temp h2 {
+  font-size: 3.5rem;
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+
+.weather-condition {
+  text-align: center;
+}
+
+.weather-condition img {
+  width: 80px;
+  height: 80px;
+  margin-bottom: 0.5rem;
+}
+
+.weather-condition p {
+  text-transform: capitalize;
+}
+
+.weather-details {
+  display: flex;
+  justify-content: space-between;
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.weather-detail-item {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.weather-detail-item i {
+  font-size: 1.5rem;
+}
+
+.detail-label {
+  font-size: 0.9rem;
+  opacity: 0.8;
+  margin-bottom: 0.2rem;
+}
+
+.detail-value {
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+.weather-alert {
+  background-color: rgba(255, 87, 34, 0.2);
+  border-radius: 10px;
+  padding: 1rem;
+}
+
+.weather-alert p {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 500;
+}
+
+.weather-alert i {
+  color: #ff5722;
+}
+
+/* Report Card Styles */
+.report-card {
+  background-color: #fff;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.report-card-header {
+  background-color: #f8673a;
+  color: white;
+  padding: 1.5rem;
+  text-align: center;
+}
+
+.report-card-header h3 {
+  font-size: 1.8rem;
+  margin-bottom: 0.5rem;
+}
+
+.report-card-header p {
+  opacity: 0.9;
+  font-size: 1rem;
+}
+
+.report-card-body {
+  padding: 1.5rem;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.report-form {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.report-form .form-group {
+  margin-bottom: 1.2rem;
+}
+
+.report-form label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  color: #2c3e50;
+}
+
+.report-form input,
+.report-form select,
+.report-form textarea {
+  width: 100%;
+  padding: 0.8rem;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 1rem;
+  color: #000000;
+  background-color: #f8f9fa;
+}
+
+.report-form input::placeholder,
+.report-form textarea::placeholder {
+  color: #777777;
+}
+
+.report-form input:focus,
+.report-form select:focus,
+.report-form textarea:focus {
+  border-color: #f8673a;
+  outline: none;
+  background-color: #fff;
+}
+
+.report-form textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+.report-form .submit-btn {
+  background-color: #f8673a;
+  color: white;
+  border: none;
+  padding: 0.8rem 1.5rem;
+  font-size: 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  width: 100%;
+  margin-top: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.report-form .submit-btn:hover:not(:disabled) {
+  background-color: #e55a2b;
+}
+
+.report-form .submit-btn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.report-success {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 2rem;
+  height: 100%;
+}
+
+.report-success i {
+  font-size: 3rem;
+  color: #2ecc71;
+  margin-bottom: 1rem;
+}
+
+.report-success p {
+  color: #2c3e50;
+  font-size: 1.1rem;
+  line-height: 1.5;
+}
+
+/* Disasters Info Section */
+.disasters-info-section {
+  margin-top: 3rem;
+}
+
+.disasters-info-section h2 {
+  font-size: 2rem;
+  color: #2c3e50;
+  margin-bottom: 1rem;
+}
+
+.disasters-info-section p {
+  color: #7f8c8d;
+  margin-bottom: 1.5rem;
+}
+
+.alert {
+  padding: 1rem;
+  border-radius: 5px;
+  margin-bottom: 1rem;
+}
+
+.alert-info {
+  background-color: #d1ecf1;
+  color: #0c5460;
+  border: 1px solid #bee5eb;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .disasters-header h1 {
+    font-size: 2rem;
+  }
+  
+  .disasters-header p {
+    font-size: 1rem;
+  }
+  
+  .cards-container {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  
+  .weather-details {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .weather-info {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  
+  .weather-temp h2 {
+    font-size: 3rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .disasters-header h1 {
+    font-size: 1.8rem;
+  }
+  
+  .weather-header h3 {
+    font-size: 1.5rem;
+  }
+  
+  .weather-temp h2 {
+    font-size: 2.5rem;
+  }
+  
+  .weather-search form {
+    flex-direction: column;
+  }
+  
+  .weather-search button {
+    width: 100%;
+    border-radius: 30px;
+  }
+  
+  .report-card-header h3 {
+    font-size: 1.5rem;
+  }
+}
+</file>
+
+<file path="client/src/styles/Footer.css">
+.footer {
+  background-color: #222;
+  color: #fff;
+  padding: 60px 0 20px;
+  margin-top: auto;
+  width: 100%;
+}
+
+.footer-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  width: 100%;
+}
+
+.footer-section h3 {
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+  position: relative;
+  display: inline-block;
+}
+
+.footer-section h3::after {
+  content: '';
+  position: absolute;
+  width: 50px;
+  height: 2px;
+  background-color: #f8673a;
+  bottom: -10px;
+  left: 0;
+}
+
+.footer-section p {
+  color: #ccc;
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+.social-icons {
+  display: flex;
+  gap: 15px;
+}
+
+.social-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background-color: #333;
+  border-radius: 50%;
+  color: #fff;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.social-icon:hover {
+  background-color: #f8673a;
+  transform: translateY(-3px);
+}
+
+.footer-links {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-links li {
+  margin-bottom: 12px;
+}
+
+.footer-links a {
+  color: #ccc;
+  text-decoration: none;
+  transition: color 0.3s ease;
+  display: inline-block;
+}
+
+.footer-links a:hover {
+  color: #f8673a;
+  transform: translateX(5px);
+}
+
+.contact-info {
+  list-style: none;
+  padding: 0;
+}
+
+.contact-info li {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 15px;
+  color: #ccc;
+}
+
+.contact-info li span {
+  word-break: break-word;
+}
+
+.contact-info i {
+  margin-right: 10px;
+  color: #f8673a;
+  margin-top: 5px;
+  flex-shrink: 0;
+}
+
+.footer-bottom {
+  text-align: center;
+  padding-top: 30px;
+  margin-top: 40px;
+  border-top: 1px solid #333;
+  color: #999;
+}
+
+/* Large devices (desktops, less than 1200px) */
+@media screen and (max-width: 1199px) {
+  .footer-container {
+    padding: 0 40px;
+    gap: 30px;
+  }
+}
+
+/* Medium devices (tablets, less than 992px) */
+@media screen and (max-width: 991px) {
+  .footer {
+    padding: 50px 0 20px;
+  }
+  
+  .footer-container {
+    padding: 0 30px;
+    gap: 25px;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  }
+  
+  .footer-section h3 {
+    font-size: 1.3rem;
+  }
+  
+  .social-icon {
+    width: 35px;
+    height: 35px;
+  }
+}
+
+/* Small devices (landscape phones, less than 768px) */
+@media screen and (max-width: 768px) {
+  .footer {
+    padding: 40px 0 20px;
+  }
+  
+  .footer-container {
+    grid-template-columns: 1fr;
+    text-align: center;
+    gap: 40px;
+  }
+  
+  .footer-section h3::after {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  
+  .social-icons {
+    justify-content: center;
+  }
+  
+  .contact-info li {
+    justify-content: center;
+  }
+  
+  .footer-links a:hover {
+    transform: none;
+  }
+  
+  .footer-bottom {
+    margin-top: 30px;
+    padding-top: 20px;
+  }
+}
+
+/* Extra small devices (phones, less than 576px) */
+@media screen and (max-width: 576px) {
+  .footer {
+    padding: 30px 0 15px;
+  }
+  
+  .footer-container {
+    padding: 0 20px;
+    gap: 30px;
+  }
+  
+  .footer-section h3 {
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+  }
+  
+  .footer-section h3::after {
+    width: 40px;
+    height: 2px;
+    bottom: -8px;
+  }
+  
+  .footer-section p {
+    font-size: 0.95rem;
+  }
+  
+  .footer-links li {
+    margin-bottom: 10px;
+  }
+  
+  .contact-info li {
+    margin-bottom: 12px;
+    font-size: 0.95rem;
+  }
+  
+  .footer-bottom {
+    font-size: 0.9rem;
+    margin-top: 25px;
+    padding-top: 15px;
+  }
+}
+
+/* Extra extra small devices (small phones, less than 400px) */
+@media screen and (max-width: 400px) {
+  .footer-container {
+    padding: 0 15px;
+    gap: 25px;
+  }
+  
+  .social-icons {
+    gap: 10px;
+  }
+  
+  .social-icon {
+    width: 32px;
+    height: 32px;
+  }
+}
+</file>
+
+<file path="client/src/styles/HomePage.css">
+/* HomePage.css */
+.home-container {
+  width: 100%;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* Hero Section */
+.hero-section {
+  background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+    url('https://images.unsplash.com/photo-1523861751938-121b5323b48b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1920&q=80');
+  background-size: cover;
+  background-position: center;
+  height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: white;
+  padding: 0 20px;
+}
+
+.hero-content {
+  max-width: 800px;
+  width: 100%;
+  padding: 0 15px;
+}
+
+.hero-content h1 {
+  font-size: 3.5rem;
+  margin-bottom: 1rem;
+  font-weight: 700;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.hero-content p {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+  line-height: 1.6;
+}
+
+.hero-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.btn {
+  padding: 12px 30px;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.btn-primary {
+  background-color: #f8673a;
+  color: white;
+  border: 2px solid #f8673a;
+}
+
+.btn-primary:hover {
+  background-color: transparent;
+  color: #f8673a;
+}
+
+.btn-secondary {
+  background-color: transparent;
+  color: white;
+  border: 2px solid white;
+}
+
+.btn-secondary:hover {
+  background-color: white;
+  color: #333;
+}
+
+/* Alert Banner */
+.alert-banner {
+  background-color: #f8f9fa;
+  padding: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-weight: 500;
+  border-bottom: 1px solid #e9ecef;
+  flex-wrap: wrap;
+  text-align: center;
+}
+
+.alert-banner i {
+  color: #f8673a;
+  font-size: 1.2rem;
+}
+
+/* Features Section */
+.features-section {
+  padding: 80px 20px;
+  text-align: center;
+  background-color: #fff;
+}
+
+.features-section h2 {
+  font-size: 2.5rem;
+  margin-bottom: 50px;
+  position: relative;
+  display: inline-block;
+}
+
+.features-section h2::after {
+  content: '';
+  position: absolute;
+  width: 50px;
+  height: 3px;
+  background-color: #f8673a;
+  bottom: -15px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.features-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.feature-card {
+  background-color: #f8f9fa;
+  padding: 30px 20px;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease;
+}
+
+.feature-card:hover {
+  transform: translateY(-10px);
+}
+
+.feature-icon {
+  width: 70px;
+  height: 70px;
+  background-color: #f8673a;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 20px;
+}
+
+.feature-icon i {
+  font-size: 1.8rem;
+  color: white;
+}
+
+.feature-card h3 {
+  font-size: 1.5rem;
+  margin-bottom: 15px;
+}
+
+.feature-card p {
+  color: #6c757d;
+  line-height: 1.6;
+}
+
+/* Disaster Types Section */
+.disaster-types-section {
+  padding: 80px 20px;
+  background-color: #f8f9fa;
+  text-align: center;
+}
+
+.disaster-types-section h2 {
+  font-size: 2.5rem;
+  margin-bottom: 50px;
+  position: relative;
+  display: inline-block;
+}
+
+.disaster-types-section h2::after {
+  content: '';
+  position: absolute;
+  width: 50px;
+  height: 3px;
+  background-color: #f8673a;
+  bottom: -15px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.disaster-types-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.disaster-type {
+  position: relative;
+  overflow: hidden;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.disaster-type:hover {
+  transform: scale(1.03);
+}
+
+.disaster-type img {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  display: block;
+}
+
+.disaster-image {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  display: block;
+}
+
+.disaster-type h3 {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+  color: white;
+  padding: 20px;
+  margin: 0;
+}
+
+/* Call to Action Section */
+.cta-section {
+  background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
+    url('https://images.unsplash.com/photo-1542273917363-3b1817f69a2d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1920&q=80');
+  background-size: cover;
+  background-position: center;
+  padding: 100px 20px;
+  text-align: center;
+  color: white;
+}
+
+.cta-content {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.cta-content h2 {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+}
+
+.cta-content p {
+  font-size: 1.2rem;
+  margin-bottom: 30px;
+  line-height: 1.6;
+}
+
+.cta-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 30px;
+  flex-wrap: wrap;
+}
+
+/* Responsive Styles */
+/* Large devices (desktops, less than 1200px) */
+@media screen and (max-width: 1199px) {
+  .features-container,
+  .disaster-types-container {
+    grid-template-columns: repeat(2, 1fr);
+    padding: 0 15px;
+  }
+  
+  .hero-content {
+    max-width: 700px;
+  }
+  
+  .hero-content h1 {
+    font-size: 3rem;
+  }
+}
+
+/* Medium devices (tablets, less than 992px) */
+@media screen and (max-width: 991px) {
+  .hero-section {
+    height: 70vh;
+  }
+  
+  .hero-content h1 {
+    font-size: 2.8rem;
+  }
+  
+  .features-section,
+  .disaster-types-section {
+    padding: 60px 15px;
+  }
+  
+  .features-section h2,
+  .disaster-types-section h2,
+  .cta-content h2 {
+    font-size: 2.2rem;
+  }
+  
+  .cta-section {
+    padding: 80px 15px;
+  }
+}
+
+/* Small devices (landscape phones, less than 768px) */
+@media screen and (max-width: 768px) {
+  .hero-section {
+    height: auto;
+    min-height: 60vh;
+    padding: 80px 15px;
+  }
+  
+  .hero-content h1 {
+    font-size: 2.5rem;
+  }
+  
+  .hero-content p {
+    font-size: 1.1rem;
+  }
+  
+  .hero-buttons {
+    flex-direction: column;
+    gap: 15px;
+    width: 100%;
+    max-width: 250px;
+    margin: 0 auto;
+  }
+  
+  .btn {
+    width: 100%;
+    padding: 12px 20px;
+  }
+  
+  .features-container,
+  .disaster-types-container {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  
+  .feature-card {
+    padding: 25px 15px;
+  }
+  
+  .feature-icon {
+    width: 60px;
+    height: 60px;
+  }
+  
+  .feature-icon i {
+    font-size: 1.5rem;
+  }
+  
+  .feature-card h3 {
+    font-size: 1.3rem;
+  }
+  
+  .disaster-type img {
+    height: 200px;
+  }
+  
+  .disaster-type h3 {
+    font-size: 1.3rem;
+    padding: 15px;
+  }
+  
+  .cta-content h2 {
+    font-size: 2rem;
+  }
+  
+  .cta-content p {
+    font-size: 1.1rem;
+  }
+}
+
+/* Extra small devices (phones, less than 576px) */
+@media screen and (max-width: 575px) {
+  .hero-section {
+    padding: 60px 10px;
+  }
+  
+  .hero-content h1 {
+    font-size: 2rem;
+  }
+  
+  .hero-content p {
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .features-section,
+  .disaster-types-section {
+    padding: 50px 10px;
+  }
+  
+  .features-section h2,
+  .disaster-types-section h2 {
+    font-size: 1.8rem;
+    margin-bottom: 40px;
+  }
+  
+  .features-section h2::after,
+  .disaster-types-section h2::after {
+    width: 40px;
+    height: 2px;
+    bottom: -10px;
+  }
+  
+  .feature-card {
+    padding: 20px 15px;
+  }
+  
+  .feature-card h3 {
+    font-size: 1.2rem;
+  }
+  
+  .disaster-type h3 {
+    font-size: 1.2rem;
+    padding: 12px;
+  }
+  
+  .cta-section {
+    padding: 60px 10px;
+  }
+  
+  .cta-content h2 {
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+  }
+  
+  .cta-content p {
+    font-size: 1rem;
+    margin-bottom: 20px;
+  }
+}
+
+/* Extra extra small devices (small phones, less than 400px) */
+@media screen and (max-width: 399px) {
+  .hero-content h1 {
+    font-size: 1.8rem;
+  }
+  
+  .alert-banner {
+    padding: 10px;
+    font-size: 0.9rem;
+  }
+  
+  .alert-banner i {
+    font-size: 1rem;
+  }
+  
+  .feature-icon {
+    width: 50px;
+    height: 50px;
+  }
+  
+  .feature-icon i {
+    font-size: 1.2rem;
+  }
+  
+  .disaster-type img {
+    height: 180px;
+  }
+}
+</file>
+
+<file path="client/src/styles/MapsPage.css">
+.maps-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+.maps-header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.maps-header h1 {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.maps-header p {
+  font-size: 1.1rem;
+  color: #666;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.map-controls {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 30px;
+  flex-wrap: wrap;
+}
+
+.map-button {
+  background-color: #f0f4f8;
+  border: 2px solid #d0d8e0;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #34495e;
+}
+
+.map-button i {
+  color: #f8673a;
+}
+
+.map-button:hover {
+  background-color: #e1e8ef;
+  border-color: #b8c4d0;
+}
+
+.map-button.active {
+  background-color: #f8673a;
+  color: white;
+  border-color: #f8673a;
+}
+
+.map-button.active i {
+  color: white;
+}
+
+.map-button.report-button {
+  background-color: #f8673a;
+  color: white;
+  border-color: #f8673a;
+}
+
+.map-button.report-button i {
+  color: white;
+}
+
+.map-button.report-button:hover {
+  background-color: #e55a2e;
+  border-color: #e55a2e;
+}
+
+.map-container {
+  width: 100%;
+  height: 500px;
+  background-color: #f8f9fa;
+  border-radius: 10px;
+  overflow: hidden;
+  position: relative;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  margin-bottom: 40px;
+}
+
+.map-loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.8);
+  position: absolute;
+  width: 100%;
+  z-index: 15;
+}
+
+.map-loading i {
+  font-size: 3rem;
+  color: #f8673a;
+  margin-bottom: 15px;
+}
+
+.map-error {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 15px;
+  background-color: rgba(255, 59, 48, 0.1);
+  border-left: 4px solid #ff3b30;
+  margin-bottom: 15px;
+  border-radius: 4px;
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 15;
+  max-width: 80%;
+}
+
+.map-error i {
+  font-size: 1.5rem;
+  color: #ff3b30;
+  margin-bottom: 10px;
+}
+
+.map-error p {
+  color: #333;
+  font-weight: 500;
+}
+
+.map {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.map-placeholder {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.map-placeholder img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.map-overlay {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  background-color: rgba(255, 255, 255, 0.9);
+  padding: 15px;
+  border-radius: 5px;
+  max-width: 250px;
+  z-index: 10;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.map-overlay h3 {
+  margin-bottom: 5px;
+  font-size: 1.2rem;
+  color: #333;
+}
+
+.map-overlay p {
+  font-size: 0.9rem;
+  color: #666;
+  margin-bottom: 10px;
+}
+
+.map-legend {
+  margin-top: 15px;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.legend-color {
+  width: 20px;
+  height: 20px;
+  border-radius: 3px;
+  margin-right: 10px;
+}
+
+.legend-color.high {
+  background-color: rgba(255, 59, 48, 0.7);
+}
+
+.legend-color.medium {
+  background-color: rgba(255, 149, 0, 0.7);
+}
+
+.legend-color.low {
+  background-color: rgba(255, 204, 0, 0.7);
+}
+
+.legend-line {
+  width: 30px;
+  height: 3px;
+  margin-right: 10px;
+}
+
+.legend-line.primary {
+  background-color: #007bff;
+}
+
+.legend-line.secondary {
+  background-color: #6c757d;
+}
+
+.legend-icon {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: #28a745;
+  margin-right: 10px;
+  position: relative;
+}
+
+.legend-icon.medical:before {
+  content: "+";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-weight: bold;
+}
+
+.legend-icon.food {
+  background-color: #fd7e14;
+}
+
+.legend-icon.shelter {
+  background-color: #6f42c1;
+}
+
+.map-info {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.info-card {
+  background-color: #f8f9fa;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+  text-align: center;
+}
+
+.info-card i {
+  font-size: 2rem;
+  color: #f8673a;
+  margin-bottom: 15px;
+}
+
+.info-card h3 {
+  font-size: 1.3rem;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.info-card p {
+  color: #666;
+  line-height: 1.5;
+}
+
+.google-map {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+
+/* Report Form Styles */
+.report-form-container {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 350px;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.95);
+  z-index: 20;
+  box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+  overflow-y: auto;
+}
+
+.report-form {
+  padding: 20px;
+}
+
+.report-form h3 {
+  color: #333;
+  margin-bottom: 15px;
+  font-size: 1.4rem;
+  text-align: center;
+}
+
+.form-instruction {
+  margin-bottom: 20px;
+  color: #666;
+  font-size: 0.9rem;
+  text-align: center;
+}
+
+.location-button {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  background-color: #4285f4;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background-color 0.3s ease;
+}
+
+.location-button:hover {
+  background-color: #3367d6;
+}
+
+.location-button i {
+  margin-right: 8px;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+  color: #333;
+  font-weight: 500;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 0.9rem;
+}
+
+.form-group textarea {
+  height: 100px;
+  resize: vertical;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.cancel-button,
+.submit-button {
+  padding: 10px 20px;
+  border-radius: 4px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.cancel-button {
+  background-color: #f1f1f1;
+  color: #333;
+  border: 1px solid #ddd;
+}
+
+.cancel-button:hover {
+  background-color: #e1e1e1;
+}
+
+.submit-button {
+  background-color: #f8673a;
+  color: white;
+  border: 1px solid #f8673a;
+}
+
+.submit-button:hover {
+  background-color: #e55a2e;
+}
+
+.submit-button:disabled {
+  background-color: #f8673a80;
+  border-color: #f8673a80;
+  cursor: not-allowed;
+}
+
+/* Info window styling */
+.disaster-info-window {
+  padding: 5px;
+  max-width: 250px;
+}
+
+.disaster-info-window h3 {
+  color: #f8673a;
+  margin-bottom: 8px;
+  font-size: 1.1rem;
+}
+
+.disaster-info-window p {
+  margin-bottom: 5px;
+  font-size: 0.9rem;
+}
+
+.report-info-window {
+  padding: 5px;
+  max-width: 250px;
+}
+
+.report-info-window h3 {
+  color: #f8673a;
+  margin-bottom: 8px;
+  font-size: 1.1rem;
+}
+
+.report-info-window p {
+  margin-bottom: 5px;
+  font-size: 0.9rem;
+}
+
+/* Responsive styles */
+@media screen and (max-width: 768px) {
+  .maps-header h1 {
+    font-size: 2rem;
+  }
+  
+  .map-container {
+    height: 400px;
+  }
+  
+  .map-overlay {
+    max-width: 200px;
+  }
+  
+  .report-form-container {
+    width: 100%;
+    height: 100%;
+  }
+  
+  .report-form {
+    padding: 15px;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .maps-container {
+    padding: 30px 15px;
+  }
+  
+  .maps-header h1 {
+    font-size: 1.8rem;
+  }
+  
+  .map-container {
+    height: 350px;
+  }
+  
+  .map-overlay {
+    top: 10px;
+    left: 10px;
+    padding: 10px;
+    max-width: 180px;
+  }
+  
+  .map-overlay h3 {
+    font-size: 1.1rem;
+  }
+  
+  .map-overlay p {
+    font-size: 0.8rem;
+  }
+  
+  .legend-item {
+    margin-bottom: 5px;
+  }
+  
+  .legend-color, .legend-icon {
+    width: 15px;
+    height: 15px;
+  }
+  
+  .legend-line {
+    width: 25px;
+  }
+}
+
+.login-prompt {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.login-prompt-content {
+  background-color: white;
+  padding: 30px;
+  border-radius: 10px;
+  max-width: 400px;
+  width: 90%;
+  text-align: center;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.login-prompt-content h3 {
+  margin-bottom: 15px;
+  color: #333;
+}
+
+.login-prompt-content p {
+  margin-bottom: 25px;
+  color: #666;
+}
+
+.login-prompt-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+.login-prompt-btn {
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.login-prompt-btn.login {
+  background-color: #f8673a;
+  color: white;
+  border: 1px solid #f8673a;
+}
+
+.login-prompt-btn.login:hover {
+  background-color: #e55a2e;
+}
+
+.login-prompt-btn.cancel {
+  background-color: #f1f1f1;
+  color: #333;
+  border: 1px solid #ddd;
+}
+
+.login-prompt-btn.cancel:hover {
+  background-color: #e1e1e1;
+}
+</file>
+
+<file path="client/src/styles/Navbar.css">
+.navbar {
+  background: linear-gradient(90deg, rgb(28, 27, 27) 0%, rgb(26, 23, 23) 100%);
+  height: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.2rem;
+  position: sticky;
+  top: 0;
+  z-index: 999;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  width: 100%;
+}
+
+.navbar-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 80px;
+  max-width: 1500px;
+  padding: 0 50px;
+  position: relative;
+}
+
+.navbar-logo {
+  color: #fff;
+  position: absolute;
+  left: 50px;
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 2rem;
+  display: flex;
+  align-items: center;
+}
+
+.navbar-logo i {
+  margin-right: 0.5rem;
+  color: #f8673a;
+}
+
+.navbar-logo span {
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+.nav-menu {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  list-style: none;
+  text-align: center;
+  gap: 15px;
+  margin: 0 auto;
+}
+
+.nav-item {
+  height: 80px;
+  border-bottom: 2px solid transparent;
+  margin: 0 5px;
+  position: relative;
+  border-radius: 4px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.nav-item:hover {
+  border-bottom: 2px solid #f8673a;
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.nav-link {
+  color: #ffffff !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  padding: 0.5rem 1.2rem;
+  height: 100%;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  transition: all 0.3s ease;
+  position: relative;
+  border-radius: 4px;
+  background-color: rgba(255, 255, 255, 0.03);
+  text-align: center;
+  width: 100%;
+}
+
+.nav-link:hover {
+  color: #f8673a !important;
+  background-color: rgba(248, 103, 58, 0.08);
+}
+
+.nav-link.active {
+  color: #f8673a !important;
+  background-color: rgba(248, 103, 58, 0.1);
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: 0;
+  left: 50%;
+  background-color: #f8673a;
+  transition: all 0.3s ease;
+  transform: translateX(-50%);
+}
+
+.nav-link:hover::after {
+  width: 70%;
+}
+
+.nav-link.active::after {
+  width: 70%;
+}
+
+.menu-icon {
+  display: none;
+}
+
+/* Auth Buttons */
+.nav-auth-buttons {
+  display: flex;
+  gap: 15px;
+  position: absolute;
+  right: 50px;
+  align-items: center;
+}
+
+.mobile-auth-buttons {
+  display: none;
+}
+
+.auth-btn {
+  padding: 8px 16px;
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.3s ease;
+}
+
+.login-btn {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.login-btn:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  transform: translateY(-2px);
+}
+
+.login-btn.active {
+  background-color: rgba(255, 255, 255, 0.25);
+  color: #fff;
+}
+
+.signup-btn {
+  background-color: #f8673a;
+  color: white;
+  border: 1px solid #f8673a;
+}
+
+.signup-btn:hover {
+  background-color: #e55a2e;
+  transform: translateY(-2px);
+}
+
+.signup-btn.active {
+  background-color: #e55a2e;
+}
+
+.logout-btn {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  cursor: pointer;
+}
+
+.logout-btn:hover {
+  background-color: #dc3545;
+  border-color: #dc3545;
+  transform: translateY(-2px);
+}
+
+.user-greeting {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #fff;
+  font-size: 0.9rem;
+  padding: 8px 16px;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 50px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.user-greeting i {
+  font-size: 1.2rem;
+  color: #f8673a;
+}
+
+/* Large devices (desktops, less than 1200px) */
+@media screen and (max-width: 1199px) {
+  .navbar-container {
+    padding: 0 40px;
+  }
+  
+  .navbar-logo {
+    left: 40px;
+  }
+  
+  .nav-link {
+    padding: 0.5rem 1rem;
+  }
+  
+  .nav-menu {
+    gap: 10px;
+  }
+}
+
+/* Medium devices (tablets, less than 992px) */
+@media screen and (max-width: 991px) {
+  .navbar-container {
+    padding: 0 30px;
+    justify-content: space-between;
+  }
+  
+  .navbar-logo {
+    position: static;
+    font-size: 1.8rem;
+  }
+  
+  .nav-link {
+    padding: 0.5rem 0.8rem;
+    font-size: 1.1rem;
+  }
+  
+  .nav-menu {
+    gap: 5px;
+    margin-right: 0;
+  }
+  
+  .nav-item {
+    margin: 0 3px;
+  }
+  
+  .nav-auth-buttons {
+    right: 30px;
+    gap: 10px;
+  }
+  
+  .auth-btn {
+    padding: 6px 12px;
+    font-size: 0.85rem;
+  }
+  
+  .user-greeting {
+    font-size: 0.85rem;
+    padding: 6px 12px;
+  }
+  
+  .user-greeting i {
+    font-size: 1.1rem;
+  }
+}
+
+/* Small devices (landscape phones, less than 768px) */
+@media screen and (max-width: 960px) {
+  .navbar-container {
+    padding: 0 30px;
+    justify-content: space-between;
+  }
+  
+  .navbar-logo {
+    position: static;
+  }
+
+  .nav-menu {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 90vh;
+    position: absolute;
+    top: 80px;
+    left: -100%;
+    opacity: 1;
+    transition: all 0.5s ease;
+    margin: 0;
+    padding-top: 30px;
+    overflow-y: auto;
+    background-color: rgba(36, 34, 34, 0.95);
+    gap: 0;
+  }
+
+  .nav-menu.active {
+    background: #242222;
+    left: 0;
+    opacity: 1;
+    transition: all 0.5s ease;
+    z-index: 1;
+  }
+
+  .nav-item {
+    height: 60px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    border-bottom: none;
+    margin: 5px 0;
+    border-radius: 0;
+  }
+
+  .nav-item:hover {
+    border-bottom: none;
+    background-color: rgba(248, 103, 58, 0.1);
+  }
+
+  .nav-link {
+    text-align: center;
+    padding: 1.5rem;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #ffffff !important;
+    font-size: 1.2rem;
+    background-color: transparent;
+    border-radius: 0;
+  }
+  
+  .nav-link.active {
+    background-color: rgba(248, 103, 58, 0.15);
+    color: #f8673a !important;
+  }
+  
+  .nav-link::after {
+    display: none;
+  }
+
+  .menu-icon {
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 0;
+    transform: translate(-100%, 60%);
+    font-size: 1.8rem;
+    cursor: pointer;
+    color: #f8673a;
+  }
+
+  .nav-auth-buttons {
+    display: none;
+  }
+  
+  .mobile-auth-buttons {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    margin-top: 20px;
+    gap: 15px;
+    padding: 10px 0;
+    flex-wrap: wrap;
+  }
+  
+  .auth-btn {
+    padding: 10px 20px;
+    font-size: 1rem;
+  }
+  
+  .user-greeting {
+    width: 100%;
+    justify-content: center;
+    padding: 10px;
+    font-size: 1rem;
+    margin-bottom: 10px;
+    border-radius: 5px;
+  }
+}
+
+/* Extra small devices (phones, less than 576px) */
+@media screen and (max-width: 576px) {
+  .navbar {
+    height: 70px;
+  }
+  
+  .navbar-container {
+    height: 70px;
+    padding: 0 20px;
+  }
+  
+  .navbar-logo {
+    font-size: 1.6rem;
+  }
+  
+  .navbar-logo i {
+    margin-right: 0.3rem;
+  }
+  
+  .nav-menu {
+    top: 70px;
+  }
+  
+  .menu-icon {
+    font-size: 1.6rem;
+    transform: translate(-80%, 55%);
+  }
+}
+
+/* Extra extra small devices (small phones, less than 400px) */
+@media screen and (max-width: 400px) {
+  .navbar-container {
+    padding: 0 15px;
+  }
+  
+  .navbar-logo {
+    font-size: 1.4rem;
+  }
+  
+  .navbar-logo span {
+    max-width: 150px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  
+  .menu-icon {
+    font-size: 1.4rem;
+    transform: translate(-70%, 55%);
+  }
+}
+</file>
+
+<file path="client/src/styles/PreparednessPage.css">
+/* PreparednessPage.css */
+
+.preparedness-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+}
+
+.preparedness-header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.preparedness-header h1 {
+    font-size: 2.5rem;
+    color: #2c3e50;
+    margin-bottom: 1rem;
+}
+
+.preparedness-header p {
+    font-size: 1.2rem;
+    color: #7f8c8d;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.disaster-cards-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+}
+
+.disaster-card {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.disaster-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.disaster-card-header {
+    background-color: #3498db;
+    color: white;
+    padding: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.disaster-card-header i {
+    font-size: 2rem;
+}
+
+.disaster-card-header h2 {
+    font-size: 1.5rem;
+    margin: 0;
+}
+
+.disaster-card-body {
+    padding: 1.5rem;
+}
+
+.disaster-card-body ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.disaster-card-body li {
+    position: relative;
+    padding-left: 1.5rem;
+    margin-bottom: 1rem;
+    line-height: 1.5;
+}
+
+.disaster-card-body li:before {
+    content: "•";
+    color: #3498db;
+    font-size: 1.2rem;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+/* Specific colors for different disaster types */
+.disaster-card:nth-child(1) .disaster-card-header {
+    background-color: #e74c3c;
+    /* Earthquake - Red */
+}
+
+.disaster-card:nth-child(2) .disaster-card-header {
+    background-color: #3498db;
+    /* Flood - Blue */
+}
+
+.disaster-card:nth-child(3) .disaster-card-header {
+    background-color: #2980b9;
+    /* Hurricane - Darker Blue */
+}
+
+.disaster-card:nth-child(4) .disaster-card-header {
+    background-color: #8e44ad;
+    /* Tornado - Purple */
+}
+
+.disaster-card:nth-child(5) .disaster-card-header {
+    background-color: #d35400;
+    /* Wildfire - Orange */
+}
+
+.disaster-card:nth-child(6) .disaster-card-header {
+    background-color: #795548;
+    /* Landslide - Brown */
+}
+
+.disaster-card:nth-child(7) .disaster-card-header {
+    background-color: #1abc9c;
+    /* Tsunami - Teal */
+}
+
+.disaster-card:nth-child(8) .disaster-card-header {
+    background-color: #34495e;
+    /* Blizzard - Dark Blue/Gray */
+}
+
+.disaster-card:nth-child(9) .disaster-card-header {
+    background-color: #f39c12;
+    /* Drought - Yellow/Orange */
+}
+
+.disaster-card:nth-child(10) .disaster-card-header {
+    background-color: #27ae60;
+    /* Pandemic - Green */
+}
+
+/* Responsive adjustments */
+@media (max-width: 1200px) {
+    .disaster-cards-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .disaster-cards-container {
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    }
+
+    .preparedness-header h1 {
+        font-size: 2rem;
+    }
+
+    .preparedness-header p {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .disaster-cards-container {
+        grid-template-columns: 1fr;
+    }
+
+    .disaster-card-header {
+        padding: 1rem;
+    }
+
+    .disaster-card-header i {
+        font-size: 1.5rem;
+    }
+
+    .disaster-card-header h2 {
+        font-size: 1.2rem;
+    }
+
+    .disaster-card-body {
+        padding: 1rem;
+    }
+}
+</file>
+
+<file path="client/vite.config.js">
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
+
+// https://vite.dev/config/
+export default defineConfig({
+  plugins: [react()],
+})
+</file>
+
+<file path="README.md">
+# DisasterGuard - Disaster Management Website
+
+A comprehensive disaster management website built with the MERN stack (MongoDB, Express, React, Node.js) and Vite.
+
+## Features
+
+- Beautiful and responsive UI
+- Information about different types of disasters
+- Disaster preparedness resources
+- Emergency response coordination
+- Contact information
+- User authentication and authorization
+- Interactive maps for disaster zones
+- Real-time disaster reporting and tracking
+
+## Tech Stack
+
+### Frontend
+- React (with Vite)
+- React Router for navigation
+- CSS for styling
+- Font Awesome for icons
+- Google Maps API for mapping features
+
+### Backend
+- Node.js
+- Express
+- MongoDB Atlas for database
+- JWT for authentication
+- Mongoose for database modeling
+
+## Project Structure
+
+```
+disaster-management/
+├── client/                 # Frontend React application
+│   ├── public/             # Public assets
+│   └── src/
+│       ├── components/     # Reusable components
+│       ├── pages/          # Page components
+│       ├── styles/         # CSS styles
+│       ├── context/        # React Context providers
+│       ├── services/       # API services
+│       ├── App.jsx         # Main App component
+│       └── main.jsx        # Entry point
+├── server/                 # Backend Node.js/Express application
+│   ├── models/             # Mongoose models
+│   ├── routes/             # API routes
+│   ├── controllers/        # Route controllers
+│   ├── middleware/         # Custom middleware
+│   ├── config/            # Configuration files
+│   ├── .env               # Environment variables (not in git)
+│   ├── .env.example       # Example environment variables
+│   └── index.js           # Server entry point
+└── README.md              # Project documentation
+```
+
+## Getting Started
+
+### Prerequisites
+
+- Node.js (v14 or higher)
+- MongoDB Atlas account
+
+### MongoDB Atlas Setup
+
+1. Create a MongoDB Atlas account at [https://www.mongodb.com/cloud/atlas](https://www.mongodb.com/cloud/atlas)
+
+2. Create a new cluster:
+   - Click "Build a Cluster"
+   - Choose the FREE tier
+   - Select your preferred cloud provider and region
+   - Click "Create Cluster"
+
+3. Set up database access:
+   - Go to "Database Access" under Security
+   - Click "Add New Database User"
+   - Create a username and password
+   - Set user privileges to "Read and Write to any database"
+   - Save the credentials
+
+4. Configure network access:
+   - Go to "Network Access" under Security
+   - Click "Add IP Address"
+   - Click "Allow Access from Anywhere" (for development)
+   - Confirm
+
+5. Get your connection string:
+   - Click "Connect" on your cluster
+   - Choose "Connect your application"
+   - Copy the connection string
+   - Replace `<password>` with your database user's password
+   - Replace `<dbname>` with your preferred database name
+
+6. Create a `.env` file in the server directory using the template from `.env.example`:
+   ```
+   MONGODB_URI=your_connection_string
+   JWT_SECRET=your_jwt_secret
+   PORT=5000
+   ```
+
+### Installation
+
+1. Clone the repository
+   ```
+   git clone https://github.com/yourusername/disaster-management.git
+   cd disaster-management
+   ```
+
+2. Install server dependencies
+   ```
+   cd server
+   npm install
+   ```
+
+3. Install client dependencies
+   ```
+   cd ../client
+   npm install
+   ```
+
+4. Set up environment variables:
+   - Copy `.env.example` to `.env` in the server directory
+   - Update the variables with your MongoDB Atlas URI and other configurations
+
+### Running the Application
+
+1. Start the backend server
+   ```
+   cd server
+   npm run dev
+   ```
+
+2. Start the frontend development server
+   ```
+   cd client
+   npm run dev
+   ```
+
+3. Open your browser and navigate to `http://localhost:5173`
+
+## Environment Variables
+
+The following environment variables are required in the server's `.env` file:
+
+```
+# Server Configuration
+PORT=5000
+NODE_ENV=development
+
+# MongoDB Configuration
+MONGODB_URI=your_mongodb_atlas_uri
+
+# JWT Configuration
+JWT_SECRET=your_jwt_secret_key
+JWT_EXPIRE=30d
+
+# Google Maps API Key
+GOOGLE_MAPS_API_KEY=your_google_maps_api_key
+```
+
+Make sure to replace the placeholder values with your actual configuration.
+
+## License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
+</file>
+
+<file path="server/.env.example">
+# Server Configuration
+PORT=5000
+NODE_ENV=development
+
+# MongoDB Configuration
+MONGODB_URI=your_atlas_URI
+
+# JWT Configuration
+JWT_SECRET=Genrate_from_terminal_orchatGPT
+JWT_EXPIRE=30d
+
+# Google OAuthObtain_from_console.cloud.google.com
+GOOGLE_CLIENT_SECRET=Secret_from_console.cloud.google.com
+GOOGLE_CALLBACK_URL=http://localhost:5000/api/auth/google/callback
+
+# Facebook OAuth
+FACEBOOK_APP_ID=your_facebook_app_id
+FACEBOOK_APP_SECRET=your_facebook_app_secret
+FACEBOOK_CALLBACK_URL=http://localhost:5000/api/auth/facebook/callback
+
+# Email Configuration (for password reset)
+SMTP_HOST=smtp.gmail.com
+SMTP_PORT=587
+SMTP_USER=your_email@gmail.com
+SMTP_PASSWORD=your_app_specific_password
+FROM_EMAIL=your_email@gmail.com
+FROM_NAME=Disaster Management System
+</file>
+
+<file path="server/.gitignore">
+# dependencies
+/node_modules
+
+# environment variables
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# misc
+.DS_Store
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+</file>
+
+<file path="server/config/passport.js">
+const passport = require('passport');
+const GoogleStrategy = require('passport-google-oauth20').Strategy;
+const FacebookStrategy = require('passport-facebook').Strategy;
+const User = require('../models/User');
+const dotenv = require('dotenv');
+
+// Load environment variables
+dotenv.config();
+
+// Verify environment variables
+if (!process.env.GOOGLE_CLIENT_ID || !process.env.GOOGLE_CLIENT_SECRET) {
+  console.error('Google OAuth credentials are missing. Please check your .env file.');
+  process.exit(1);
+}
+
+// Google Strategy
+passport.use(
+  new GoogleStrategy(
+    {
+      clientID: process.env.GOOGLE_CLIENT_ID,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+      callbackURL: process.env.GOOGLE_CALLBACK_URL,
+    },
+    async (accessToken, refreshToken, profile, done) => {
+      try {
+        // Check if user already exists
+        let user = await User.findOne({ googleId: profile.id });
+
+        if (user) {
+          return done(null, user);
+        }
+
+        // Create new user if doesn't exist
+        user = await User.create({
+          googleId: profile.id,
+          fullName: profile.displayName,
+          email: profile.emails[0].value,
+          isVerified: true, // Google accounts are pre-verified
+        });
+
+        done(null, user);
+      } catch (error) {
+        done(error, null);
+      }
+    }
+  )
+);
+
+// Facebook Strategy
+passport.use(new FacebookStrategy({
+    clientID: process.env.FACEBOOK_APP_ID,
+    clientSecret: process.env.FACEBOOK_APP_SECRET,
+    callbackURL: process.env.FACEBOOK_CALLBACK_URL,
+    profileFields: ['id', 'displayName', 'photos', 'email']
+  },
+  async (accessToken, refreshToken, profile, done) => {
+    try {
+      // Check if user already exists
+      let user = await User.findOne({ email: profile.emails[0].value });
+
+      if (user) {
+        // If user exists, update their Facebook ID if not set
+        if (!user.facebookId) {
+          user.facebookId = profile.id;
+          await user.save();
+        }
+        return done(null, user);
+      }
+
+      // If user doesn't exist, create new user
+      user = await User.create({
+        fullName: profile.displayName,
+        email: profile.emails[0].value,
+        facebookId: profile.id,
+        isVerified: true // Facebook accounts are pre-verified
+      });
+
+      return done(null, user);
+    } catch (error) {
+      return done(error, null);
+    }
+  }
+));
+
+// Serialize user for the session
+passport.serializeUser((user, done) => {
+  done(null, user.id);
+});
+
+// Deserialize user from the session
+passport.deserializeUser(async (id, done) => {
+  try {
+    const user = await User.findById(id);
+    done(null, user);
+  } catch (error) {
+    done(error, null);
+  }
+});
+
+module.exports = passport;
+</file>
+
+<file path="server/controllers/authController.js">
+const User = require('../models/User');
+const jwt = require('jsonwebtoken');
+
+// Generate JWT token
+const generateToken = (id) => {
+  return jwt.sign({ id }, process.env.JWT_SECRET, {
+    expiresIn: process.env.JWT_EXPIRE
+  });
+};
+
+// @desc    Register a new user
+// @route   POST /api/auth/register
+// @access  Public
+const register = async (req, res) => {
+  try {
+    console.log('Received registration request with body:', req.body);
+    const { fullName, email, password } = req.body;
+
+    // Validate required fields
+    if (!fullName || !email || !password) {
+      console.log('Missing required fields:', { fullName, email, password: password ? 'present' : 'missing' });
+      return res.status(400).json({ 
+        success: false, 
+        message: 'Please provide fullName, email and password' 
+      });
+    }
+
+    // Check if user already exists
+    const userExists = await User.findOne({ email });
+    if (userExists) {
+      console.log('User already exists with email:', email);
+      return res.status(400).json({ 
+        success: false, 
+        message: 'User with this email already exists' 
+      });
+    }
+
+    console.log('Creating new user with data:', { fullName, email, password: '***' });
+    // Create user
+    const user = await User.create({
+      fullName,
+      email,
+      password
+    });
+
+    if (user) {
+      // Generate token
+      const token = generateToken(user._id);
+      console.log('User created successfully:', { userId: user._id, email: user.email });
+
+      res.status(201).json({
+        success: true,
+        user: {
+          _id: user._id,
+          fullName: user.fullName,
+          email: user.email,
+          role: user.role
+        },
+        token
+      });
+    } else {
+      console.log('Failed to create user - no user returned');
+      res.status(400).json({ success: false, message: 'Invalid user data' });
+    }
+  } catch (error) {
+    console.error('Register error details:', {
+      name: error.name,
+      message: error.message,
+      code: error.code,
+      stack: error.stack
+    });
+    
+    // MongoDB duplicate key error
+    if (error.code === 11000) {
+      return res.status(400).json({ 
+        success: false, 
+        message: 'User with this email already exists' 
+      });
+    }
+    
+    // Validation errors
+    if (error.name === 'ValidationError') {
+      const messages = Object.values(error.errors).map(val => val.message);
+      return res.status(400).json({ 
+        success: false, 
+        message: messages.join(', ') 
+      });
+    }
+    
+    res.status(500).json({ 
+      success: false, 
+      message: 'Server error during registration' 
+    });
+  }
+};
+
+// @desc    Login user
+// @route   POST /api/auth/login
+// @access  Public
+const login = async (req, res) => {
+  try {
+    const { email, password } = req.body;
+
+    // Check for user email
+    const user = await User.findOne({ email }).select('+password');
+    if (!user) {
+      return res.status(401).json({ success: false, message: 'Invalid credentials' });
+    }
+
+    // Check if password matches
+    const isMatch = await user.comparePassword(password);
+    if (!isMatch) {
+      return res.status(401).json({ success: false, message: 'Invalid credentials' });
+    }
+
+    res.json({
+      success: true,
+      user: {
+        _id: user._id,
+        fullName: user.fullName,
+        email: user.email,
+        role: user.role
+      },
+      token: generateToken(user._id)
+    });
+  } catch (error) {
+    console.error('Login error:', error);
+    res.status(500).json({ success: false, message: 'Server error' });
+  }
+};
+
+// @desc    Get current user profile
+// @route   GET /api/auth/me
+// @access  Private
+const getCurrentUser = async (req, res) => {
+  try {
+    const user = await User.findById(req.user._id);
+
+    if (!user) {
+      return res.status(404).json({ success: false, message: 'User not found' });
+    }
+
+    res.json({
+      success: true,
+      user: {
+        _id: user._id,
+        fullName: user.fullName,
+        email: user.email,
+        role: user.role,
+        location: user.location
+      }
+    });
+  } catch (error) {
+    console.error('Get current user error:', error);
+    res.status(500).json({ success: false, message: 'Server error' });
+  }
+};
+
+// @desc    Update user profile
+// @route   PUT /api/auth/me
+// @access  Private
+const updateProfile = async (req, res) => {
+  try {
+    const { fullName, email, location } = req.body;
+    
+    // Find user
+    const user = await User.findById(req.user._id);
+    
+    if (!user) {
+      return res.status(404).json({ success: false, message: 'User not found' });
+    }
+    
+    // Update fields
+    if (fullName) user.fullName = fullName;
+    if (email) user.email = email;
+    if (location) user.location = location;
+    
+    const updatedUser = await user.save();
+    
+    res.json({
+      success: true,
+      user: {
+        _id: updatedUser._id,
+        fullName: updatedUser.fullName,
+        email: updatedUser.email,
+        role: updatedUser.role,
+        location: updatedUser.location
+      }
+    });
+  } catch (error) {
+    console.error('Update profile error:', error);
+    res.status(500).json({ success: false, message: 'Server error' });
+  }
+};
+
+module.exports = {
+  register,
+  login,
+  getCurrentUser,
+  updateProfile
+};
+</file>
+
+<file path="server/controllers/disasterController.js">
+const Disaster = require('../models/Disaster');
+
+// @desc    Create a new disaster report
+// @route   POST /api/disasters
+// @access  Private
+const createDisaster = async (req, res) => {
+  try {
+    // Add user ID to request body
+    req.body.reportedBy = req.user._id;
+    
+    // Ensure location has type field
+    if (req.body.location && !req.body.location.type) {
+      req.body.location.type = 'Point';
+    }
+    
+    console.log('Creating disaster with data:', JSON.stringify(req.body));
+    
+    const disaster = await Disaster.create(req.body);
+    
+    res.status(201).json({
+      success: true,
+      data: disaster
+    });
+  } catch (error) {
+    console.error('Create disaster error details:', error);
+    res.status(500).json({ success: false, message: 'Server error', error: error.message });
+  }
+};
+
+// @desc    Get all disasters
+// @route   GET /api/disasters
+// @access  Public
+const getDisasters = async (req, res) => {
+  try {
+    // Build query
+    let query = {};
+    
+    // Filter by type
+    if (req.query.type) {
+      query.type = req.query.type;
+    }
+    
+    // Filter by status
+    if (req.query.status) {
+      query.status = req.query.status;
+    }
+    
+    // Filter by severity
+    if (req.query.severity) {
+      query.severity = req.query.severity;
+    }
+    
+    // Get disasters
+    const disasters = await Disaster.find(query)
+      .populate('reportedBy', 'fullName email')
+      .sort({ createdAt: -1 });
+    
+    res.json({
+      success: true,
+      count: disasters.length,
+      data: disasters
+    });
+  } catch (error) {
+    console.error('Get disasters error:', error);
+    res.status(500).json({ success: false, message: 'Server error' });
+  }
+};
+
+// @desc    Get disasters within radius
+// @route   GET /api/disasters/radius/:lat/:lng/:distance
+// @access  Public
+const getDisastersInRadius = async (req, res) => {
+  try {
+    const { lat, lng, distance } = req.params;
+    
+    // Calculate radius using radians
+    // Earth radius is 6,378 km
+    const radius = distance / 6378;
+    
+    const disasters = await Disaster.find({
+      location: {
+        $geoWithin: { $centerSphere: [[lng, lat], radius] }
+      }
+    }).populate('reportedBy', 'fullName email');
+    
+    res.json({
+      success: true,
+      count: disasters.length,
+      data: disasters
+    });
+  } catch (error) {
+    console.error('Get disasters in radius error:', error);
+    res.status(500).json({ success: false, message: 'Server error' });
+  }
+};
+
+// @desc    Get single disaster
+// @route   GET /api/disasters/:id
+// @access  Public
+const getDisaster = async (req, res) => {
+  try {
+    const disaster = await Disaster.findById(req.params.id)
+      .populate('reportedBy', 'fullName email');
+    
+    if (!disaster) {
+      return res.status(404).json({ success: false, message: 'Disaster not found' });
+    }
+    
+    res.json({
+      success: true,
+      data: disaster
+    });
+  } catch (error) {
+    console.error('Get disaster error:', error);
+    res.status(500).json({ success: false, message: 'Server error' });
+  }
+};
+
+// @desc    Update disaster
+// @route   PUT /api/disasters/:id
+// @access  Private
+const updateDisaster = async (req, res) => {
+  try {
+    let disaster = await Disaster.findById(req.params.id);
+    
+    if (!disaster) {
+      return res.status(404).json({ success: false, message: 'Disaster not found' });
+    }
+    
+    // Make sure user is the disaster reporter or an admin
+    if (disaster.reportedBy.toString() !== req.user._id.toString() && req.user.role !== 'admin') {
+      return res.status(403).json({ success: false, message: 'Not authorized to update this disaster' });
+    }
+    
+    disaster = await Disaster.findByIdAndUpdate(req.params.id, req.body, {
+      new: true,
+      runValidators: true
+    });
+    
+    res.json({
+      success: true,
+      data: disaster
+    });
+  } catch (error) {
+    console.error('Update disaster error:', error);
+    res.status(500).json({ success: false, message: 'Server error' });
+  }
+};
+
+// @desc    Delete disaster
+// @route   DELETE /api/disasters/:id
+// @access  Private
+const deleteDisaster = async (req, res) => {
+  try {
+    const disaster = await Disaster.findById(req.params.id);
+    
+    if (!disaster) {
+      return res.status(404).json({ success: false, message: 'Disaster not found' });
+    }
+    
+    // Make sure user is the disaster reporter or an admin
+    if (disaster.reportedBy.toString() !== req.user._id.toString() && req.user.role !== 'admin') {
+      return res.status(403).json({ success: false, message: 'Not authorized to delete this disaster' });
+    }
+    
+    await disaster.deleteOne();
+    
+    res.json({
+      success: true,
+      data: {}
+    });
+  } catch (error) {
+    console.error('Delete disaster error:', error);
+    res.status(500).json({ success: false, message: 'Server error' });
+  }
+};
+
+// @desc    Get disaster statistics
+// @route   GET /api/disasters/stats
+// @access  Public
+const getDisasterStats = async (req, res) => {
+  try {
+    const stats = await Disaster.aggregate([
+      {
+        $group: {
+          _id: '$type',
+          count: { $sum: 1 },
+          avgSeverity: {
+            $avg: {
+              $switch: {
+                branches: [
+                  { case: { $eq: ['$severity', 'low'] }, then: 1 },
+                  { case: { $eq: ['$severity', 'medium'] }, then: 2 },
+                  { case: { $eq: ['$severity', 'high'] }, then: 3 },
+                  { case: { $eq: ['$severity', 'critical'] }, then: 4 }
+                ],
+                default: 0
+              }
+            }
+          },
+          totalCasualties: { $sum: '$casualties' },
+          totalAffectedArea: { $sum: '$affectedArea' }
+        }
+      },
+      { $sort: { count: -1 } }
+    ]);
+    
+    res.json({
+      success: true,
+      data: stats
+    });
+  } catch (error) {
+    console.error('Get disaster stats error:', error);
+    res.status(500).json({ success: false, message: 'Server error' });
+  }
+};
+
+module.exports = {
+  createDisaster,
+  getDisasters,
+  getDisastersInRadius,
+  getDisaster,
+  updateDisaster,
+  deleteDisaster,
+  getDisasterStats
+};
+</file>
+
+<file path="server/index.js">
+// Load environment variables first
+require('dotenv').config();
+
+const express = require('express');
+const mongoose = require('mongoose');
+const cors = require('cors');
+const session = require('express-session');
+const passport = require('./config/passport');
+const errorHandler = require('./middleware/error');
+
+// Import routes
+const authRoutes = require('./routes/authRoutes');
+const disasterRoutes = require('./routes/disasterRoutes');
+
+// Initialize Express app
+const app = express();
+
+// CORS configuration
+app.use(cors({
+  origin: ['http://localhost:5173', 'http://localhost:3000'],
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization']
+}));
+
+// Other middleware
+app.use(express.json());
+
+// Session middleware
+app.use(session({
+  secret: process.env.JWT_SECRET || 'your-secret-key',
+  resave: false,
+  saveUninitialized: false,
+  cookie: {
+    secure: process.env.NODE_ENV === 'production',
+    maxAge: 24 * 60 * 60 * 1000 // 24 hours
+  }
+}));
+
+// Initialize Passport
+app.use(passport.initialize());
+app.use(passport.session());
+
+// Connect to MongoDB
+mongoose.connect(process.env.MONGODB_URI)
+  .then(() => console.log('MongoDB connected'))
+  .catch(err => console.error('MongoDB connection error:', err));
+
+// Mount routes
+app.use('/api/auth', authRoutes);
+app.use('/api/disasters', disasterRoutes);
+
+// Base route
+app.get('/api', (req, res) => {
+  res.json({ message: 'Disaster Management API is running' });
+});
+
+// Error handling middleware
+app.use(errorHandler);
+
+// Start server
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+});
+</file>
+
+<file path="server/middleware/auth.js">
+const jwt = require('jsonwebtoken');
+const User = require('../models/User');
+
+// Middleware to protect routes
+const protect = async (req, res, next) => {
+  let token;
+
+  // Check if token exists in headers
+  if (req.headers.authorization && req.headers.authorization.startsWith('Bearer')) {
+    try {
+      // Get token from header
+      token = req.headers.authorization.split(' ')[1];
+
+      // Verify token
+      const decoded = jwt.verify(token, process.env.JWT_SECRET);
+
+      // Get user from token
+      req.user = await User.findById(decoded.id).select('-password');
+
+      next();
+    } catch (error) {
+      console.error('Auth middleware error:', error);
+      return res.status(401).json({ success: false, message: 'Not authorized, token failed' });
+    }
+  }
+
+  if (!token) {
+    return res.status(401).json({ success: false, message: 'Not authorized, no token' });
+  }
+};
+
+// Middleware to check if user is admin
+const admin = (req, res, next) => {
+  if (req.user && req.user.role === 'admin') {
+    next();
+  } else {
+    return res.status(403).json({ success: false, message: 'Not authorized as admin' });
+  }
+};
+
+module.exports = { protect, admin };
+</file>
+
+<file path="server/middleware/error.js">
+// Error handling middleware
+const errorHandler = (err, req, res, next) => {
+  let error = { ...err };
+  error.message = err.message;
+
+  // Log to console for dev
+  console.error(err);
+
+  // Mongoose bad ObjectId
+  if (err.name === 'CastError') {
+    const message = 'Resource not found';
+    error = { message, statusCode: 404 };
+  }
+
+  // Mongoose duplicate key
+  if (err.code === 11000) {
+    const message = 'Duplicate field value entered';
+    error = { message, statusCode: 400 };
+  }
+
+  // Mongoose validation error
+  if (err.name === 'ValidationError') {
+    const message = Object.values(err.errors).map(val => val.message);
+    error = { message, statusCode: 400 };
+  }
+
+  res.status(error.statusCode || 500).json({
+    success: false,
+    error: error.message || 'Server Error'
+  });
+};
+
+module.exports = errorHandler;
+</file>
+
+<file path="server/models/Disaster.js">
+const mongoose = require('mongoose');
+
+const DisasterSchema = new mongoose.Schema({
+  title: {
+    type: String,
+    required: [true, 'Title is required'],
+    trim: true
+  },
+  description: {
+    type: String,
+    required: [true, 'Description is required'],
+    trim: true
+  },
+  type: {
+    type: String,
+    required: [true, 'Disaster type is required'],
+    enum: ['earthquake', 'flood', 'fire', 'hurricane', 'tornado', 'tsunami', 'landslide', 'other'],
+    trim: true
+  },
+  severity: {
+    type: String,
+    enum: ['low', 'medium', 'high', 'critical'],
+    default: 'medium'
+  },
+  location: {
+    type: {
+      type: String,
+      enum: ['Point'],
+      default: 'Point'
+    },
+    coordinates: {
+      type: [Number],
+      required: [true, 'Coordinates are required']
+    },
+    address: {
+      type: String,
+      trim: true
+    }
+  },
+  status: {
+    type: String,
+    enum: ['active', 'resolved', 'monitoring'],
+    default: 'active'
+  },
+  reportedBy: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User',
+    required: true
+  },
+  images: [{
+    type: String
+  }],
+  affectedArea: {
+    type: Number, // in square kilometers
+    default: 0
+  },
+  casualties: {
+    type: Number,
+    default: 0
+  },
+  evacuationRequired: {
+    type: Boolean,
+    default: false
+  },
+  evacuationZone: {
+    type: {
+      type: String,
+      enum: ['Polygon'],
+      default: 'Polygon'
+    },
+    coordinates: {
+      type: [[[Number]]], // GeoJSON Polygon format
+      default: []
+    }
+  },
+  reliefCenters: [{
+    name: String,
+    location: {
+      type: {
+        type: String,
+        enum: ['Point'],
+        default: 'Point'
+      },
+      coordinates: {
+        type: [Number]
+      }
+    },
+    capacity: Number,
+    contact: String
+  }],
+  createdAt: {
+    type: Date,
+    default: Date.now
+  },
+  updatedAt: {
+    type: Date,
+    default: Date.now
+  }
+}, { timestamps: true });
+
+// Create index for geospatial queries
+DisasterSchema.index({ location: '2dsphere' });
+DisasterSchema.index({ 'evacuationZone': '2dsphere' });
+DisasterSchema.index({ 'reliefCenters.location': '2dsphere' });
+
+module.exports = mongoose.model('Disaster', DisasterSchema);
+</file>
+
+<file path="server/models/User.js">
+const mongoose = require('mongoose');
+const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
+
+const UserSchema = new mongoose.Schema({
+  fullName: {
+    type: String,
+    required: [true, 'Please provide your full name'],
+    trim: true
+  },
+  email: {
+    type: String,
+    required: [true, 'Please provide your email'],
+    unique: true,
+    lowercase: true,
+    trim: true
+  },
+  password: {
+    type: String,
+    required: function() {
+      // Password is required only if not using OAuth
+      return !this.googleId && !this.facebookId;
+    },
+    minlength: [6, 'Password must be at least 6 characters'],
+    select: false
+  },
+  isVerified: {
+    type: Boolean,
+    default: false
+  },
+  verificationToken: String,
+  resetPasswordToken: String,
+  resetPasswordExpire: Date,
+  googleId: String,
+  facebookId: String,
+  role: {
+    type: String,
+    enum: ['user', 'admin'],
+    default: 'user'
+  },
+  location: {
+    type: {
+      type: String,
+      enum: ['Point'],
+      default: 'Point'
+    },
+    coordinates: {
+      type: [Number],
+      default: [0, 0]
+    }
+  },
+  createdAt: {
+    type: Date,
+    default: Date.now
+  }
+}, { timestamps: true });
+
+// Create index for geospatial queries
+UserSchema.index({ location: '2dsphere' });
+
+// Hash password before saving
+UserSchema.pre('save', async function(next) {
+  // Only hash the password if it's modified and exists
+  if (!this.isModified('password') || !this.password) {
+    return next();
+  }
+  
+  try {
+    const salt = await bcrypt.genSalt(10);
+    this.password = await bcrypt.hash(this.password, salt);
+    next();
+  } catch (error) {
+    next(error);
+  }
+});
+
+// Method to compare passwords
+UserSchema.methods.comparePassword = async function(candidatePassword) {
+  if (!this.password) {
+    return false; // OAuth users have no password
+  }
+  return await bcrypt.compare(candidatePassword, this.password);
+};
+
+// Method to generate JWT token
+UserSchema.methods.getSignedJwtToken = function() {
+  return jwt.sign({ id: this._id }, process.env.JWT_SECRET, {
+    expiresIn: process.env.JWT_EXPIRE
+  });
+};
+
+module.exports = mongoose.model('User', UserSchema);
+</file>
+
+<file path="server/package.json">
+{
+  "name": "server",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js",
+    "data:import": "node seeder.js -i",
+    "data:destroy": "node seeder.js -d",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "bcryptjs": "^3.0.2",
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "express-session": "^1.18.1",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^7.5.0",
+    "passport": "^0.7.0",
+    "passport-facebook": "^3.0.0",
+    "passport-google-oauth20": "^2.0.0",
+    "validator": "^13.12.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.9"
+  }
+}
+</file>
+
+<file path="server/README.md">
+# Disaster Management Backend API
+
+This is the backend API for the Disaster Management application. It provides endpoints for user authentication, disaster reporting, and geospatial queries.
+
+## Features
+
+- User authentication (register, login, profile management)
+- Disaster reporting and management
+- Geospatial queries for disasters within a radius
+- Disaster statistics and analytics
+
+## Tech Stack
+
+- Node.js
+- Express.js
+- MongoDB with Mongoose
+- JWT for authentication
+- GeoJSON for geospatial data
+
+## API Endpoints
+
+### Authentication
+
+- `POST /api/auth/register` - Register a new user
+- `POST /api/auth/login` - Login a user
+- `GET /api/auth/me` - Get current user profile (protected)
+- `PUT /api/auth/me` - Update user profile (protected)
+
+### Disasters
+
+- `GET /api/disasters` - Get all disasters (with optional filters)
+- `GET /api/disasters/stats` - Get disaster statistics
+- `GET /api/disasters/radius/:lat/:lng/:distance` - Get disasters within a radius (in km)
+- `GET /api/disasters/:id` - Get a single disaster
+- `POST /api/disasters` - Create a new disaster report (protected)
+- `PUT /api/disasters/:id` - Update a disaster (protected)
+- `DELETE /api/disasters/:id` - Delete a disaster (protected)
+
+## Setup
+
+1. Install dependencies:
+   ```
+   npm install
+   ```
+
+2. Set up environment variables:
+   Create a `.env` file with the following variables:
+   ```
+   PORT=5000
+   MONGO_URI=your_mongodb_connection_string
+   JWT_SECRET=your_jwt_secret
+   ```
+
+3. Seed the database with sample data:
+   ```
+   npm run data:import
+   ```
+
+4. Start the server:
+   ```
+   npm run dev
+   ```
+
+## Sample Users
+
+After running the seeder, you can use these accounts:
+
+- Admin: admin@example.com / password123
+- User: john@example.com / password123
+- User: jane@example.com / password123
+</file>
+
+<file path="server/routes/auth.js">
+const express = require('express');
+const router = express.Router();
+const passport = require('passport');
+const { register, login, getCurrentUser, updateProfile } = require('../controllers/authController');
+const { protect } = require('../middleware/auth');
+
+// Regular auth routes
+router.post('/register', register);
+router.post('/login', login);
+router.get('/me', protect, getCurrentUser);
+router.put('/me', protect, updateProfile);
+
+// Google OAuth routes
+router.get('/google',
+  passport.authenticate('google', { scope: ['profile', 'email'] })
+);
+
+router.get('/google/callback',
+  passport.authenticate('google', { failureRedirect: '/login' }),
+  (req, res) => {
+    // Generate JWT token
+    const token = req.user.getSignedJwtToken();
+    
+    // Redirect to frontend with token
+    res.redirect(`${process.env.CLIENT_URL}/auth/callback?token=${token}`);
+  }
+);
+
+// Facebook OAuth routes
+router.get('/facebook',
+  passport.authenticate('facebook', { scope: ['email'] })
+);
+
+router.get('/facebook/callback',
+  passport.authenticate('facebook', { failureRedirect: '/login' }),
+  (req, res) => {
+    // Generate JWT token
+    const token = req.user.getSignedJwtToken();
+    
+    // Redirect to frontend with token
+    res.redirect(`${process.env.CLIENT_URL}/auth/callback?token=${token}`);
+  }
+);
+
+module.exports = router;
+</file>
+
+<file path="server/routes/authRoutes.js">
+const express = require('express');
+const router = express.Router();
+const passport = require('passport');
+const { register, login, getCurrentUser, updateProfile } = require('../controllers/authController');
+const { protect } = require('../middleware/auth');
+
+// Public routes
+router.post('/register', register);
+router.post('/login', login);
+
+// Google OAuth routes
+router.get('/google',
+  passport.authenticate('google', { scope: ['profile', 'email'] })
+);
+
+router.get('/google/callback',
+  passport.authenticate('google', { failureRedirect: '/login' }),
+  (req, res) => {
+    // Generate JWT token
+    const token = req.user.getSignedJwtToken();
+    
+    // Redirect to frontend with token
+    res.redirect(`${process.env.CLIENT_URL}/auth/callback?token=${token}`);
+  }
+);
+
+// Protected routes
+router.get('/me', protect, getCurrentUser);
+router.put('/me', protect, updateProfile);
+
+module.exports = router;
+</file>
+
+<file path="server/routes/disasterRoutes.js">
+const express = require('express');
+const router = express.Router();
+const {
+  createDisaster,
+  getDisasters,
+  getDisastersInRadius,
+  getDisaster,
+  updateDisaster,
+  deleteDisaster,
+  getDisasterStats
+} = require('../controllers/disasterController');
+const { protect, admin } = require('../middleware/auth');
+
+// Public routes
+router.get('/', getDisasters);
+router.get('/stats', getDisasterStats);
+router.get('/radius/:lat/:lng/:distance', getDisastersInRadius);
+router.get('/:id', getDisaster);
+
+// Protected routes
+router.post('/', protect, createDisaster);
+router.put('/:id', protect, updateDisaster);
+router.delete('/:id', protect, deleteDisaster);
+
+module.exports = router;
+</file>
+
+<file path="server/seeder.js">
+const mongoose = require('mongoose');
+const dotenv = require('dotenv');
+const bcrypt = require('bcryptjs');
+
+// Load models
+const User = require('./models/User');
+const Disaster = require('./models/Disaster');
+
+// Load env vars
+dotenv.config();
+
+// Connect to DB
+mongoose.connect(process.env.MONGO_URI);
+
+// Sample data
+const users = [
+  {
+    fullName: 'Admin User',
+    email: 'admin@example.com',
+    password: 'password123',
+    role: 'admin',
+    location: {
+      type: 'Point',
+      coordinates: [72.8777, 19.0760] // Mumbai
+    }
+  },
+  {
+    fullName: 'John Doe',
+    email: 'john@example.com',
+    password: 'password123',
+    role: 'user',
+    location: {
+      type: 'Point',
+      coordinates: [72.8777, 19.0760] // Mumbai
+    }
+  },
+  {
+    fullName: 'Jane Smith',
+    email: 'jane@example.com',
+    password: 'password123',
+    role: 'user',
+    location: {
+      type: 'Point',
+      coordinates: [77.2090, 28.6139] // Delhi
+    }
+  }
+];
+
+// Mumbai coordinates
+const mumbaiLat = 19.0760;
+const mumbaiLng = 72.8777;
+
+// Sample disasters
+const disasters = [
+  {
+    title: 'Flood in Lower Parel',
+    description: 'Heavy flooding reported in Lower Parel area due to continuous rainfall',
+    type: 'flood',
+    severity: 'high',
+    location: {
+      type: 'Point',
+      coordinates: [72.8826, 19.0096], // Lower Parel, Mumbai
+      address: 'Lower Parel, Mumbai'
+    },
+    status: 'active',
+    affectedArea: 5.2,
+    casualties: 0,
+    evacuationRequired: true,
+    evacuationZone: {
+      type: 'Polygon',
+      coordinates: [[[72.8726, 19.0046], [72.8926, 19.0046], [72.8926, 19.0146], [72.8726, 19.0146], [72.8726, 19.0046]]]
+    },
+    reliefCenters: [
+      {
+        name: 'Phoenix Mall Relief Center',
+        location: {
+          type: 'Point',
+          coordinates: [72.8826, 19.0146]
+        },
+        capacity: 500,
+        contact: '+91 9876543210'
+      }
+    ]
+  },
+  {
+    title: 'Fire in Andheri Industrial Area',
+    description: 'Major fire reported in an industrial complex in Andheri East',
+    type: 'fire',
+    severity: 'critical',
+    location: {
+      type: 'Point',
+      coordinates: [72.8777, 19.1136], // Andheri, Mumbai
+      address: 'MIDC, Andheri East, Mumbai'
+    },
+    status: 'active',
+    affectedArea: 1.8,
+    casualties: 2,
+    evacuationRequired: true,
+    evacuationZone: {
+      type: 'Polygon',
+      coordinates: [[[72.8677, 19.1036], [72.8877, 19.1036], [72.8877, 19.1236], [72.8677, 19.1236], [72.8677, 19.1036]]]
+    },
+    reliefCenters: [
+      {
+        name: 'Andheri Sports Complex',
+        location: {
+          type: 'Point',
+          coordinates: [72.8577, 19.1236]
+        },
+        capacity: 300,
+        contact: '+91 9876543211'
+      }
+    ]
+  },
+  {
+    title: 'Building Collapse in Bandra',
+    description: 'Residential building collapsed in Bandra West due to heavy rainfall',
+    type: 'other',
+    severity: 'high',
+    location: {
+      type: 'Point',
+      coordinates: [72.8296, 19.0596], // Bandra, Mumbai
+      address: 'Bandra West, Mumbai'
+    },
+    status: 'active',
+    affectedArea: 0.5,
+    casualties: 5,
+    evacuationRequired: true,
+    evacuationZone: {
+      type: 'Polygon',
+      coordinates: [[[72.8196, 19.0496], [72.8396, 19.0496], [72.8396, 19.0696], [72.8196, 19.0696], [72.8196, 19.0496]]]
+    },
+    reliefCenters: [
+      {
+        name: 'Bandra Municipal School',
+        location: {
+          type: 'Point',
+          coordinates: [72.8396, 19.0596]
+        },
+        capacity: 200,
+        contact: '+91 9876543212'
+      }
+    ]
+  }
+];
+
+// Import data into DB
+const importData = async () => {
+  try {
+    // Clear existing data
+    await User.deleteMany();
+    await Disaster.deleteMany();
+    
+    console.log('Data cleared...');
+    
+    // Hash passwords and create users
+    const hashedUsers = await Promise.all(
+      users.map(async (user) => {
+        const salt = await bcrypt.genSalt(10);
+        user.password = await bcrypt.hash(user.password, salt);
+        return user;
+      })
+    );
+    
+    const createdUsers = await User.create(hashedUsers);
+    console.log('Users created...');
+    
+    // Add user IDs to disasters
+    const disastersWithUsers = disasters.map((disaster, index) => {
+      return {
+        ...disaster,
+        reportedBy: createdUsers[index % createdUsers.length]._id
+      };
+    });
+    
+    await Disaster.create(disastersWithUsers);
+    console.log('Disasters created...');
+    
+    console.log('Data imported!');
+    process.exit();
+  } catch (err) {
+    console.error(err);
+    process.exit(1);
+  }
+};
+
+// Delete data from DB
+const deleteData = async () => {
+  try {
+    await User.deleteMany();
+    await Disaster.deleteMany();
+    
+    console.log('Data destroyed!');
+    process.exit();
+  } catch (err) {
+    console.error(err);
+    process.exit(1);
+  }
+};
+
+// Check command line args
+if (process.argv[2] === '-i') {
+  importData();
+} else if (process.argv[2] === '-d') {
+  deleteData();
+} else {
+  console.log('Please use -i to import data or -d to delete data');
+  process.exit();
+}
+</file>
+
+<file path="server/testConnection.js">
+const mongoose = require('mongoose');
+const dotenv = require('dotenv');
+
+// Load env vars
+dotenv.config();
+
+console.log('Attempting to connect to MongoDB...');
+console.log('Connection string:', process.env.MONGO_URI);
+
+mongoose.connect(process.env.MONGO_URI)
+  .then(() => {
+    console.log('MongoDB connected successfully!');
+    process.exit(0);
+  })
+  .catch(err => {
+    console.error('MongoDB connection error:', err);
+    process.exit(1);
+  });
+</file>
+
+</files>

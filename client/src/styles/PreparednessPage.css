@@ -1,0 +1,182 @@
+/* PreparednessPage.css */
+
+.preparedness-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+}
+
+.preparedness-header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.preparedness-header h1 {
+    font-size: 2.5rem;
+    color: #2c3e50;
+    margin-bottom: 1rem;
+}
+
+.preparedness-header p {
+    font-size: 1.2rem;
+    color: #7f8c8d;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.disaster-cards-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+}
+
+.disaster-card {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.disaster-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.disaster-card-header {
+    background-color: #3498db;
+    color: white;
+    padding: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.disaster-card-header i {
+    font-size: 2rem;
+}
+
+.disaster-card-header h2 {
+    font-size: 1.5rem;
+    margin: 0;
+}
+
+.disaster-card-body {
+    padding: 1.5rem;
+}
+
+.disaster-card-body ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.disaster-card-body li {
+    position: relative;
+    padding-left: 1.5rem;
+    margin-bottom: 1rem;
+    line-height: 1.5;
+}
+
+.disaster-card-body li:before {
+    content: "•";
+    color: #3498db;
+    font-size: 1.2rem;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+/* Specific colors for different disaster types */
+.disaster-card:nth-child(1) .disaster-card-header {
+    background-color: #e74c3c;
+    /* Earthquake - Red */
+}
+
+.disaster-card:nth-child(2) .disaster-card-header {
+    background-color: #3498db;
+    /* Flood - Blue */
+}
+
+.disaster-card:nth-child(3) .disaster-card-header {
+    background-color: #2980b9;
+    /* Hurricane - Darker Blue */
+}
+
+.disaster-card:nth-child(4) .disaster-card-header {
+    background-color: #8e44ad;
+    /* Tornado - Purple */
+}
+
+.disaster-card:nth-child(5) .disaster-card-header {
+    background-color: #d35400;
+    /* Wildfire - Orange */
+}
+
+.disaster-card:nth-child(6) .disaster-card-header {
+    background-color: #795548;
+    /* Landslide - Brown */
+}
+
+.disaster-card:nth-child(7) .disaster-card-header {
+    background-color: #1abc9c;
+    /* Tsunami - Teal */
+}
+
+.disaster-card:nth-child(8) .disaster-card-header {
+    background-color: #34495e;
+    /* Blizzard - Dark Blue/Gray */
+}
+
+.disaster-card:nth-child(9) .disaster-card-header {
+    background-color: #f39c12;
+    /* Drought - Yellow/Orange */
+}
+
+.disaster-card:nth-child(10) .disaster-card-header {
+    background-color: #27ae60;
+    /* Pandemic - Green */
+}
+
+/* Responsive adjustments */
+@media (max-width: 1200px) {
+    .disaster-cards-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .disaster-cards-container {
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    }
+
+    .preparedness-header h1 {
+        font-size: 2rem;
+    }
+
+    .preparedness-header p {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .disaster-cards-container {
+        grid-template-columns: 1fr;
+    }
+
+    .disaster-card-header {
+        padding: 1rem;
+    }
+
+    .disaster-card-header i {
+        font-size: 1.5rem;
+    }
+
+    .disaster-card-header h2 {
+        font-size: 1.2rem;
+    }
+
+    .disaster-card-body {
+        padding: 1rem;
+    }
+}

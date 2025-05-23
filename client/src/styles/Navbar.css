@@ -1,0 +1,590 @@
+.navbar {
+  background: linear-gradient(90deg, rgb(28, 27, 27) 0%, rgb(26, 23, 23) 100%);
+  height: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.2rem;
+  position: sticky;
+  top: 0;
+  z-index: 999;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  width: 100%;
+}
+
+.navbar-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 80px;
+  max-width: 1500px;
+  padding: 0 50px;
+  position: relative;
+}
+
+.navbar-logo {
+  color: #fff;
+  position: absolute;
+  left: 50px;
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 2rem;
+  display: flex;
+  align-items: center;
+}
+
+.navbar-logo i {
+  margin-right: 0.5rem;
+  color: #f8673a;
+}
+
+.navbar-logo span {
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+.nav-menu {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  list-style: none;
+  text-align: center;
+  gap: 15px;
+  margin: 0 auto;
+}
+
+.nav-item {
+  height: 80px;
+  border-bottom: 2px solid transparent;
+  margin: 0 5px;
+  position: relative;
+  border-radius: 4px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.nav-item:hover {
+  border-bottom: 2px solid #f8673a;
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.nav-link {
+  color: #ffffff !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  padding: 0.5rem 1.2rem;
+  height: 100%;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  transition: all 0.3s ease;
+  position: relative;
+  border-radius: 4px;
+  background-color: rgba(255, 255, 255, 0.03);
+  text-align: center;
+  width: 100%;
+}
+
+.nav-link:hover {
+  color: #f8673a !important;
+  background-color: rgba(248, 103, 58, 0.08);
+}
+
+.nav-link.active {
+  color: #f8673a !important;
+  background-color: rgba(248, 103, 58, 0.1);
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: 0;
+  left: 50%;
+  background-color: #f8673a;
+  transition: all 0.3s ease;
+  transform: translateX(-50%);
+}
+
+.nav-link:hover::after {
+  width: 70%;
+}
+
+.nav-link.active::after {
+  width: 70%;
+}
+
+.menu-icon {
+  display: none;
+}
+
+/* Auth Buttons */
+.nav-auth-buttons {
+  display: flex;
+  gap: 15px;
+  position: absolute;
+  right: 50px;
+  align-items: center;
+}
+
+.mobile-auth-buttons {
+  display: none;
+}
+
+.auth-btn {
+  padding: 8px 16px;
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+.login-btn {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.login-btn:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  transform: translateY(-2px);
+}
+
+.login-btn.active {
+  background-color: rgba(255, 255, 255, 0.25);
+  color: #fff;
+}
+
+.signup-btn {
+  background-color: #f8673a;
+  color: white;
+  border: 1px solid #f8673a;
+}
+
+.signup-btn:hover {
+  background-color: #e55a2e;
+  transform: translateY(-2px);
+}
+
+.signup-btn.active {
+  background-color: #e55a2e;
+}
+
+.logout-btn {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  cursor: pointer;
+}
+
+.logout-btn:hover {
+  background-color: #dc3545;
+  border-color: #dc3545;
+  transform: translateY(-2px);
+}
+
+.user-greeting {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #fff;
+  font-size: 0.9rem;
+  padding: 8px 16px;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 50px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  white-space: nowrap;
+  max-width: 150px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.user-greeting span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.user-greeting i {
+  font-size: 1.2rem;
+  color: #f8673a;
+  flex-shrink: 0;
+}
+
+/* Large devices (desktops, less than 1200px) */
+@media screen and (max-width: 1199px) {
+  .navbar-container {
+    padding: 0 40px;
+  }
+  
+  .navbar-logo {
+    left: 40px;
+  }
+  
+  .nav-link {
+    padding: 0.5rem 1rem;
+  }
+  
+  .nav-menu {
+    gap: 10px;
+  }
+  
+  .nav-auth-buttons {
+    gap: 10px;
+    right: 40px;
+  }
+  
+  .auth-btn {
+    padding: 8px 12px;
+    font-size: 0.85rem;
+  }
+  
+  .user-greeting {
+    padding: 8px 12px;
+    font-size: 0.85rem;
+    max-width: 130px;
+  }
+}
+
+/* Medium devices (tablets, less than 992px) */
+@media screen and (max-width: 991px) {
+  .navbar-container {
+    padding: 0 30px;
+    justify-content: space-between;
+  }
+  
+  .navbar-logo {
+    position: static;
+    font-size: 1.8rem;
+  }
+  
+  .nav-link {
+    padding: 0.5rem 0.8rem;
+    font-size: 1.1rem;
+  }
+  
+  .nav-menu {
+    gap: 5px;
+    margin-right: 0;
+  }
+  
+  .nav-item {
+    margin: 0 3px;
+  }
+  
+  .nav-auth-buttons {
+    gap: 8px;
+    right: 30px;
+  }
+  
+  .auth-btn {
+    padding: 6px 10px;
+    font-size: 0.8rem;
+  }
+  
+  .user-greeting {
+    padding: 6px 10px;
+    font-size: 0.8rem;
+    max-width: 120px;
+  }
+  
+  .user-greeting i {
+    font-size: 1rem;
+  }
+}
+
+/* Small devices (landscape phones, less than 768px) */
+@media screen and (max-width: 960px) {
+  .navbar-container {
+    padding: 0 30px;
+    justify-content: space-between;
+  }
+  
+  .navbar-logo {
+    position: static;
+  }
+
+  .nav-menu {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 90vh;
+    position: absolute;
+    top: 80px;
+    left: -100%;
+    opacity: 1;
+    transition: all 0.5s ease;
+    margin: 0;
+    padding-top: 30px;
+    overflow-y: auto;
+    background-color: rgba(36, 34, 34, 0.95);
+    gap: 0;
+  }
+
+  .nav-menu.active {
+    background: #242222;
+    left: 0;
+    opacity: 1;
+    transition: all 0.5s ease;
+    z-index: 1;
+  }
+
+  .nav-item {
+    height: 60px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    border-bottom: none;
+    margin: 5px 0;
+    border-radius: 0;
+  }
+
+  .nav-item:hover {
+    border-bottom: none;
+    background-color: rgba(248, 103, 58, 0.1);
+  }
+
+  .nav-link {
+    text-align: center;
+    padding: 1.5rem;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #ffffff !important;
+    font-size: 1.2rem;
+    background-color: transparent;
+    border-radius: 0;
+  }
+  
+  .nav-link.active {
+    background-color: rgba(248, 103, 58, 0.15);
+    color: #f8673a !important;
+  }
+  
+  .nav-link::after {
+    display: none;
+  }
+
+  .menu-icon {
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 0;
+    transform: translate(-100%, 60%);
+    font-size: 1.8rem;
+    cursor: pointer;
+    color: #f8673a;
+  }
+
+  .nav-auth-buttons {
+    display: none;
+  }
+  
+  .mobile-auth-buttons {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    margin-top: 20px;
+    gap: 15px;
+    padding: 10px 0;
+    flex-wrap: wrap;
+  }
+  
+  .auth-btn {
+    padding: 10px 20px;
+    font-size: 1rem;
+  }
+  
+  .user-greeting {
+    width: 100%;
+    justify-content: center;
+    padding: 10px;
+    font-size: 1rem;
+    margin-bottom: 10px;
+    border-radius: 5px;
+  }
+
+  .mobile-auth-buttons.with-admin {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 15px 0;
+    gap: 12px;
+  }
+  
+  .mobile-auth-buttons.with-admin .auth-btn,
+  .mobile-auth-buttons.with-admin .user-greeting {
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+    max-width: 100%;
+    padding: 12px;
+    font-size: 1rem;
+    border-radius: 4px;
+  }
+  
+  .mobile-auth-buttons.with-admin .auth-btn i,
+  .mobile-auth-buttons.with-admin .user-greeting i {
+    font-size: 1.2rem;
+    margin-right: 8px;
+  }
+  
+  .mobile-auth-buttons.with-admin .admin-btn {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    order: 2;
+  }
+  
+  .mobile-auth-buttons.with-admin .logout-btn {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    order: 3;
+  }
+  
+  .mobile-auth-buttons.with-admin .user-greeting {
+    background-color: rgba(255, 255, 255, 0.1);
+    order: 1;
+  }
+}
+
+/* Extra small devices (phones, less than 576px) */
+@media screen and (max-width: 576px) {
+  .navbar {
+    height: 70px;
+  }
+  
+  .navbar-container {
+    height: 70px;
+    padding: 0 20px;
+  }
+  
+  .navbar-logo {
+    font-size: 1.6rem;
+  }
+  
+  .navbar-logo i {
+    margin-right: 0.3rem;
+  }
+  
+  .nav-menu {
+    top: 70px;
+  }
+  
+  .menu-icon {
+    font-size: 1.6rem;
+    transform: translate(-80%, 55%);
+  }
+}
+
+/* Extra extra small devices (small phones, less than 400px) */
+@media screen and (max-width: 400px) {
+  .navbar-container {
+    padding: 0 15px;
+  }
+  
+  .navbar-logo {
+    font-size: 1.4rem;
+  }
+  
+  .navbar-logo span {
+    max-width: 150px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  
+  .menu-icon {
+    font-size: 1.4rem;
+    transform: translate(-70%, 55%);
+  }
+}
+
+.admin-btn {
+  background-color: #4CAF50;
+  color: white;
+  border: 1px solid #4CAF50;
+  padding: 8px 15px;
+}
+
+.admin-btn:hover {
+  background-color: #3e8e41;
+  border-color: #3e8e41;
+}
+
+.admin-link {
+  margin-left: 10px;
+  background-color: rgba(76, 175, 80, 0.1);
+  border-radius: 4px;
+}
+
+@media screen and (max-width: 960px) {
+  .admin-link {
+    background-color: transparent;
+    margin-left: 0;
+  }
+}
+
+/* Special styling for when admin is logged in */
+.nav-auth-buttons.with-admin {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  gap: 10px;
+  min-width: 320px;
+  justify-content: end;
+}
+
+/* Adjust spacing for admin buttons */
+.nav-auth-buttons.with-admin .user-greeting {
+  max-width: 120px;
+}
+
+/* Medium devices adjustments for admin navbar */
+@media screen and (max-width: 1199px) {
+  .nav-auth-buttons.with-admin {
+    min-width: 300px;
+    gap: 8px;
+  }
+  
+  .nav-auth-buttons.with-admin .user-greeting {
+    max-width: 110px;
+    padding: 6px 10px;
+  }
+  
+  .nav-auth-buttons.with-admin .auth-btn {
+    padding: 6px 10px;
+  }
+}
+
+@media screen and (max-width: 991px) {
+  .nav-auth-buttons.with-admin {
+    min-width: 280px;
+    gap: 6px;
+  }
+  
+  .nav-auth-buttons.with-admin .user-greeting {
+    max-width: 100px;
+    padding: 5px 8px;
+    font-size: 0.8rem;
+  }
+  
+  .nav-auth-buttons.with-admin .auth-btn {
+    padding: 5px 8px;
+    font-size: 0.8rem;
+  }
+  
+  .nav-auth-buttons.with-admin .user-greeting i,
+  .nav-auth-buttons.with-admin .auth-btn i {
+    font-size: 0.9rem;
+  }
+} 
