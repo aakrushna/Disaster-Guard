@@ -202,7 +202,7 @@ const AdminPage = () => {
       const script = document.createElement('script');
       
       // Get API key from environment variable
-      const apiKey = 'AIzaSyCdkxLosaiJW5u-eFcLGKIQ_am6d5Wbrw0';
+      const apiKey = process.env.REACT_APP_GOOGLE_MAPS_API_KEY;
       
       console.log('Using Google Maps API Key:', apiKey ? 'Key is available' : 'No key available');
       
